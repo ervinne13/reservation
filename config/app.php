@@ -12,7 +12,8 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'ARC Motors Reservation System',
+    'name_html' => '<span class="text-red">ARC</span> Motors',
 
     /*
     |--------------------------------------------------------------------------
