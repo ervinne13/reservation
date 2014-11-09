@@ -19,7 +19,7 @@ utilities.reloadWithWaitFunction = function () {
         setTimeout(function () {
             window.location.reload();
         }, globals.reloadRedirectWaitTime);
-    }
+    };
 };
 
 utilities.redirectWithWaitFunction = function (redirectTo) {
@@ -43,4 +43,21 @@ utilities.trimPort = function (url) {
         return url;
     }
 
+};
+
+/**
+ * TODO: fix html rendering of span
+ * @param {type} $field
+ * @returns {undefined}
+ */
+utilities.markFieldLabelRequired = function ($field) {
+    if ($field == "ALL") {
+        $('.required').each(function () {
+            var $label = $(this).siblings('label');
+            $label.text($label.text() + ' <span class="text-danger">*</span>');
+        });
+    } else {
+        var $label = $field.siblings('label')[0];
+        $label.text($label.text() + ' <span class="text-danger">*</span>');
+    }
 };

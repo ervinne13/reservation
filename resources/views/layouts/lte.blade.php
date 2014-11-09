@@ -20,9 +20,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Ionicons -->
         <!--<link href="/ionicons/ionicons.min.css" rel="stylesheet" type="text/css" />-->
 
-        <!--Other Element / View Styles-->
+        <!--Other Element / View Styles that shouold be overrided by AdminLTE skin-->
         <link href="{{ asset("/bower_components/sweetalert2/dist/sweetalert2.min.css")}}" rel="stylesheet" type="text/css" />
         <link href="{{ asset("/bower_components/AdminLTE/plugins/select2/select2.min.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset("/bower_components/AdminLTE/plugins/datepicker/datepicker3.css") }}" rel="stylesheet" type="text/css" />
 
         <!-- Theme style -->
         <link href="{{ asset("/bower_components/AdminLTE/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css" />
@@ -79,6 +80,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <script src="{{ asset ("/bower_components/sweetalert2/dist/sweetalert2.min.js") }}" type="text/javascript"></script>
         <script src="{{ asset ("/bower_components/AdminLTE/plugins/select2/select2.min.js") }}" type="text/javascript"></script>
+        <script src="{{ asset ("/bower_components/AdminLTE/plugins/datepicker/bootstrap-datepicker.js") }}" type="text/javascript"></script>
 
         <script src="{{ asset ("/vendor/underscore/underscore.js") }}" type="text/javascript"></script>
 

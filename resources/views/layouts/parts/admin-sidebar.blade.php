@@ -21,70 +21,70 @@
                 </a>
             </li>
             <li>
-                <a href="/users/create">
-                    <span><i class="fa fa-plus text-fuchsia"></i> 
-                        Register Viewer
+                <a href="/clients">
+                    <span><i class="fa fa-users text-fuchsia"></i> 
+                        Clients
                     </span>
                 </a>
             </li>
-            <li class="header">Teachers & Students</li>
+            <li class="header">Finance, Loans & Payments</li>
             <li>
-                <a href="/teachers">
-                    <span><i class="fa fa-users text-blue"></i> 
-                        Teachers
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="/students">
-                    <span><i class="fa fa-graduation-cap text-info"></i> 
-                        Students
+                <a href="/sales-invoices">
+                    <span><i class="fa fa-money text-blue"></i> 
+                        Sales Invoices
                     </span>
                 </a>
             </li>
             <li>
-                <a href="/enrollment">
-                    <span><i class="fa fa-plus text-aqua"></i> 
-                        Enroll Students
+                <a href="/amortization-loans">
+                    <span><i class="fa fa-bank text-info"></i> 
+                        Amortization Loans
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/request-payments">
+                    <span><i class="fa fa-shopping-bag text-aqua"></i> 
+                        Request Payment
                     </span>
                 </a>
             </li>
             <li class="header">Master Files</li>
             <li>
-                <a href="/grading-years">
-                    <span><i class="fa fa-calendar text-blue"></i> 
-                        Grading Years
+                <a href="/items">
+                    <span><i class="fa fa-file text-blue"></i> 
+                        Items
                     </span>
                 </a>
             </li>
+            <!--            <li>
+                                        <a href="/items/create">
+                                            <span><i class="fa fa-plus text-aqua"></i> 
+                                                Create Items
+                                            </span>
+                                        </a>
+                                    </li>-->
+            <li class="header">Accounting Links</li>
             <li>
-                <a href="/graded-items">
+                <a href="http://211.221.84.84/arc-nav/accounting">
                     <span><i class="fa fa-check text-aqua"></i> 
-                        Graded Items
+                        Accounting Module
+                    </span>
+                </a>
+            <li>
+                <a href="http://211.221.84.84/arc-nav/batch-post">
+                    <span><i class="fa fa-file-o text-aqua"></i> 
+                        Batch Posting Module
                     </span>
                 </a>
             </li>
             <li>
-                <a href="/sections">
-                    <span><i class="fa fa-cubes text-light-blue"></i> 
-                        Sections
+                <a href="http://211.221.84.84/arc-nav/importation">
+                    <span><i class="fa fa-upload text-aqua"></i> 
+                        Importation Module
                     </span>
                 </a>
             </li>
-            <li>
-                <a href="/subjects">
-                    <span><i class="fa fa-book text-purple"></i> 
-                        Subjects
-                    </span>
-                </a>
-            </li>            
-            <li>
-                <a href="/classes">
-                    <span><i class="fa fa-clock-o text-blue"></i> 
-                        Classes
-                    </span>
-                </a>
-            </li>            
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

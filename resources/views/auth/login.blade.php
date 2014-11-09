@@ -40,13 +40,13 @@
             <form action="{{url('/login')}}" method="POST">
                 {{ csrf_field() }}
 
-                <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
-                    <input type="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}">
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                <div class="form-group has-feedback {{ $errors->has('username') ? ' has-error' : '' }}">
+                    <input type="username" name="username" class="form-control" placeholder="Username" value="{{ old('username') }}">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
-                    @if ($errors->has('email'))
+                    @if ($errors->has('username'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('email') }}</strong>
+                        <strong>{{ $errors->first('username') }}</strong>
                     </span>
                     @endif
                 </div>

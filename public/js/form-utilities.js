@@ -34,7 +34,7 @@ form_utilities.setFieldError = function (fieldName, errorMessage) {
     $('[name=' + fieldName + ']').parent().append(errorLabelHtml);
 };
 
-form_utilities.initializeDefaultProcessing = function ($form) {
+form_utilities.initializeDefaultProcessing = function ($form, $detailSGTable) {
 
     $('.action-button').click(function () {
 
@@ -47,6 +47,11 @@ form_utilities.initializeDefaultProcessing = function ($form) {
         if (valid) {
             var type = $(this).attr('id');
             var data = form_utilities.formToJSON($form);
+            
+            if ($detailSGTable) {
+                data.details = JSON.stringify($detailSGTable.getModifiedData());
+            }
+            
             try {
                 form_utilities.process(type, data, function (success, message) {
                     if (success) {
