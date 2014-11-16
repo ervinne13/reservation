@@ -1,9 +1,8 @@
 <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-        <!--Grading Utility and Student Performance Monitoring for Teachers and Parents-->
-        Saint Francis of Assisi
+        Reservation System - A.R.C. Motors        
     </div>
     <!-- Default to the left -->
-    <strong>Copyright © 2016 <a href="https://www.facebook.com/vasha.shadow">Vasha</a>.</strong> All rights reserved.
+    <strong>Copyright © 2016 <a href="https://www.facebook.com/tin.tin.tin8">Christine Tin & Team</a>.</strong> All rights reserved.
 </footer>
