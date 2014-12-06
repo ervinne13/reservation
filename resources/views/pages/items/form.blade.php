@@ -46,6 +46,11 @@
                                     <label>Cost</label>
                                     <input type="number" required name="cost" class="form-control required" value="{{ $item->cost }}">
                                 </div>
+                                
+                                 <div class="form-group">
+                                    <label>Reservation Cost</label>
+                                    <input type="number" required name="reservation_cost" class="form-control required" value="{{ $item->reservation_cost }}">
+                                </div>
 
                                 <div class="form-group">
                                     <label>Current Stock</label>

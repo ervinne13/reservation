@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Item extends Model {
 
     protected $fillable = [
-        "model", "name", "cost", "stock", "description", "image_url"
+        "model", "name", "cost", "reservation_cost", "stock", "description", "image_url"
     ];
 
     public static function getSummaryReports() {
