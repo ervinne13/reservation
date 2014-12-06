@@ -59,12 +59,11 @@ class ClientsController extends Controller {
             $client = new Client($request->toArray());
             $client->save();
 
-            DB::commit();                       
-            
+            DB::commit();
+
             $user->client = $client;
-            
+
             return $user;
-            
         } catch (Exception $e) {
             DB::rollBack();
             return response($e->getMessage(), 500);
@@ -99,7 +98,32 @@ class ClientsController extends Controller {
      * @param  int  $iResponseate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+
+        try {
+
+            DB::beginTransaction();
+
+            $user               = User::find($id);
+            $user->username     = $request->username;
+            $user->display_name = $request->full_name;
+            $user->role_name    = User::ROLE_CLIENT;
+            $user->password     = \Hash::make($request->password);
+            $user->generateAPIToken();
+            $user->save();
+
+            $client = Client::find($id);
+            $client->fill($request->toArray());
+            $client->save();
+
+            DB::commit();
+
+            $user->client = $client;
+
+            return $user;
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response($e->getMessage(), 500);
+        }
     }
 
     /**
