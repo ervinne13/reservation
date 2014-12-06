@@ -33,6 +33,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('items/datatable', 'ItemsController@datatable');
     Route::resource('items', 'ItemsController');
+
+    Route::resource('bank-accounts', 'BankAccountsController');
+
     // </editor-fold>
     // 
     // <editor-fold defaultstate="collapsed" desc="Modules">

@@ -116,8 +116,8 @@
         };
 
         this.getRowData = function (rowId) {
-            var dataRowSelector = '.' + _this.generateRowClassName() + '[data-id=' + rowId + ']';
-            var dataColSeletor = '.' + _this.generateRowClassName() + '[data-id=' + rowId + '] td.data-col';
+            var dataRowSelector = '.' + _this.generateRowClassName() + '[data-id="' + rowId + '"]';
+            var dataColSeletor = '.' + _this.generateRowClassName() + '[data-id="' + rowId + '"] td.data-col';
 
             var rowState = $(dataRowSelector).data('state');
             var data = {
@@ -344,7 +344,7 @@
         };
 
         this.openRowForEditing = function (id) {
-            var selector = '.' + _this.getGeneratedRowEditButtonClassName() + '[data-id=' + id + ']';
+            var selector = '.' + _this.getGeneratedRowEditButtonClassName() + '[data-id="' + id + '"]';
             var isActive = $(selector).hasClass('active');
 
             _this.closeOpenRow();
@@ -573,12 +573,12 @@
             }
 
             // lazy values are for fields that require somethings to be done first before setting their value            
-            $('.dropdown-row [name=' + key + ']').attr('data-lazy-value', value);
-            $('.dropdown-row [name=' + key + ']').val(value);
+            $('.dropdown-row [name="' + key + '"]').attr('data-lazy-value', value);
+            $('.dropdown-row [name="' + key + '"]').val(value);
 
             if ($.fn.autoNumeric && cols[key].autoNumeric) {
-                $('[name=' + key + ']').autoNumeric();
-                $('[name=' + key + ']').focusout();
+                $('[name="' + key + '"]').autoNumeric();
+                $('[name="' + key + '"]').focusout();
             }
         }
     }
