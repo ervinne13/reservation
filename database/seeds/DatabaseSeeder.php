@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder {
             $this->call(DefaultUsersSeeder::class);
             $this->call(ItemsSeeder::class);
             $this->call(NumberSeriesSeeder::class);
+            $this->call(BankAccountsSeeder::class);
 
             DB::commit();
         } catch (\Exception $e) {

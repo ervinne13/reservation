@@ -6,6 +6,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
@@ -23,6 +24,15 @@ class UsersController extends Controller {
 
     public function datatable() {
         return Datatables::of(User::query())->make(true);
+    }
+
+    public function apiLogin(Request $request) {
+        if (Auth::attempt($request->toArray())) {
+            // Authentication passed...
+            return Auth::user();
+        } else {
+            return response("Invalid login credentials", 403);
+        }
     }
 
     /**

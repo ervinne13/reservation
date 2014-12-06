@@ -27,4 +27,8 @@ class RequestPayment extends Model {
         return $this->hasMany(RequestPaymentDetail::class, 'document_number', 'document_number');
     }
 
+    function paymentBy() {
+        return $this->belongsTo(Client::class, 'payment_by_username');
+    }
+
 }

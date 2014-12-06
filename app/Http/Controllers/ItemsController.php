@@ -24,6 +24,10 @@ class ItemsController extends Controller {
         return Datatables::of(Item::query())->make(true);
     }
 
+    public function getAllJSON() {
+        return Item::all();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

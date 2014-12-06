@@ -65,14 +65,14 @@ sg_table_row_utilities.initializeDefaultEvents = function ($sgtable, $detailForm
     });
 };
 
-sg_table_row_utilities.initializeDeleteEvent = function (sgTableIdName, onDeleteConfirmedCallback, onDeletedTemporaryRowCallback) {
+sg_table_row_utilities.initializeDeleteEvent = function (sgTableIdName, onDeleteConfirmedCallback, onDeletedTemporaryRowCallback, ignoreState) {
     $('#' + sgTableIdName).on('click', '.' + sgTableIdName + '-action-delete-row', function () {
         var id = $(this).data('id');
         var state = $('.' + sgTableIdName + '-row[data-id=' + id + ']').data('state');
 
         console.log("deleting: " + id);
 
-        if (state == "created") {
+        if (!ignoreState && state == "created") {
             //  delete directly            
             sg_table_row_utilities.deleteRowOnView(sgTableIdName, id);
             if (onDeletedTemporaryRowCallback) {

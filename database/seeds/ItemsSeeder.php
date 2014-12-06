@@ -18,44 +18,49 @@ class ItemsSeeder extends Seeder {
 
         $items = [
             [
-                "model"       => "JR125",
-                "name"        => "Racal JR125",
-                "cost"        => "60000",
-                "stock"       => 3,
-                "description" => "Demo item only. DO NOT USE IN PRODUCTION!",
-                "image_url"   => "/uploads/Racal_JR125_S_1.jpg"
+                "model"            => "JR125",
+                "name"             => "Racal JR125",
+                "cost"             => "60000",
+                "reservation_cost" => "3000",
+                "stock"            => 3,
+                "description"      => "Demo item only. DO NOT USE IN PRODUCTION!",
+                "image_url"        => "/uploads/Racal_JR125_S_1.jpg"
             ],
             [
-                "model"       => "MD100",
-                "name"        => "Racal MD100",
-                "cost"        => "40000",
-                "stock"       => 3,
-                "description" => "Demo item only. DO NOT USE IN PRODUCTION!",
-                "image_url"   => "/uploads/Racal_MD100_S_1.jpg"
+                "model"            => "MD100",
+                "name"             => "Racal MD100",
+                "cost"             => "40000",
+                "reservation_cost" => "2000",
+                "stock"            => 3,
+                "description"      => "Demo item only. DO NOT USE IN PRODUCTION!",
+                "image_url"        => "/uploads/Racal_MD100_S_1.jpg"
             ],
             [
-                "model"       => "MD110",
-                "name"        => "Racal MD110",
-                "cost"        => "50000",
-                "stock"       => 3,
-                "description" => "Demo item only. DO NOT USE IN PRODUCTION!",
-                "image_url"   => "/uploads/Racal_JR125_S_1.jpg"
+                "model"            => "MD110",
+                "name"             => "Racal MD110",
+                "cost"             => "50000",
+                "reservation_cost" => "2500",
+                "stock"            => 3,
+                "description"      => "Demo item only. DO NOT USE IN PRODUCTION!",
+                "image_url"        => "/uploads/Racal_JR125_S_1.jpg"
             ],
             [
-                "model"       => "Speed X125",
-                "name"        => "Racal Speed X125",
-                "cost"        => "60000",
-                "stock"       => 3,
-                "description" => "Demo item only. DO NOT USE IN PRODUCTION!",
-                "image_url"   => "/uploads/Racal_Speed_X125_L_1.jpg"
+                "model"            => "Speed X125",
+                "name"             => "Racal Speed X125",
+                "cost"             => "60000",
+                "reservation_cost" => "3000",
+                "stock"            => 3,
+                "description"      => "Demo item only. DO NOT USE IN PRODUCTION!",
+                "image_url"        => "/uploads/Racal_Speed_X125_L_1.jpg"
             ],
             [
-                "model"       => "TS125",
-                "name"        => "Racal TS125",
-                "cost"        => "60000",
-                "stock"       => 3,
-                "description" => "Demo item only. DO NOT USE IN PRODUCTION!",
-                "image_url"   => "/uploads/Racal_TS125_S_1.jpg"
+                "model"            => "TS125",
+                "name"             => "Racal TS125",
+                "cost"             => "60000",
+                "reservation_cost" => "3000",
+                "stock"            => 3,
+                "description"      => "Demo item only. DO NOT USE IN PRODUCTION!",
+                "image_url"        => "/uploads/Racal_TS125_S_1.jpg"
             ]
         ];
 

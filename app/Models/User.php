@@ -35,4 +35,8 @@ class User extends Authenticatable {
         'password', 'remember_token',
     ];
 
+    public function generateAPIToken() {
+        $this->api_token = \Hash::make($this->username . $this->password);
+    }
+
 }

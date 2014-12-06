@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller {
     /*
@@ -43,6 +45,22 @@ use AuthenticatesUsers;
      */
     public function username() {
         return 'username';
+    }
+
+    /**
+     * Get the post register / login redirect path.
+     * @Override
+     * @return string
+     */
+    public function redirectPath() {
+
+        $authenticatedUser = Auth::user();
+
+        if ($authenticatedUser->role_name == User::ROLE_ADMIN) {
+            return "/";
+        } else {
+            return "/reservations";
+        }
     }
 
 }

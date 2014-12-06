@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SalesInvoice extends Model {
 
@@ -21,6 +22,42 @@ class SalesInvoice extends Model {
         $si->issued_by_username = Auth::user()->username;
         $si->details            = [];
         return $si;
+    }
+
+    public static function getSummaryReports() {
+
+        $currentYear  = date('Y');
+        $currentMonth = date('m');
+
+        $totalSalesOfTheYearQueryString        = "SELECT SUM(down_payment) AS total_sales FROM sales_invoices WHERE YEAR(created_at) = {$currentYear};";
+        $totalSalesOfTheMonthQueryString       = "SELECT SUM(down_payment) AS total_sales FROM sales_invoices WHERE YEAR(created_at) = {$currentYear} AND MONTH(created_at) = {$currentMonth};";
+        $totalCollectionsOfTheMonthQueryString = "SELECT SUM(amount) AS total_collections FROM request_payment_details LEFT JOIN request_payments ON request_payments.document_number = request_payment_details.document_number WHERE YEAR(request_payments.created_at) = {$currentYear} AND MONTH(request_payments.created_at) = {$currentMonth} AND status = 'Posted' AND payment_type_code='PRINCIPAL';";
+
+        $totalSalesOfTheYearRow        = DB::select(DB::raw($totalSalesOfTheYearQueryString));
+        $totalSalesOfTheMonthRow       = DB::select(DB::raw($totalSalesOfTheMonthQueryString));
+        $totalCollectionsOfTheMonthRow = DB::select(DB::raw($totalCollectionsOfTheMonthQueryString));
+
+        $totalSales       = 0;
+        $monthSales       = 0;
+        $totalCollections = 0;
+
+        if ($totalSalesOfTheYearRow && count($totalSalesOfTheYearRow) > 0) {
+            $totalSales = $totalSalesOfTheYearRow[0]->total_sales;
+        }
+
+        if ($totalSalesOfTheMonthRow && count($totalSalesOfTheMonthRow) > 0) {
+            $monthSales = $totalSalesOfTheMonthRow[0]->total_sales;
+        }
+
+        if ($totalCollectionsOfTheMonthRow && count($totalCollectionsOfTheMonthRow) > 0) {
+            $totalCollections = $totalCollectionsOfTheMonthRow[0]->total_collections;
+        }
+
+        return [
+            "total_sales"       => $totalSales,
+            "month_sales"       => $monthSales,
+            "total_collections" => $totalCollections
+        ];
     }
 
     function details() {

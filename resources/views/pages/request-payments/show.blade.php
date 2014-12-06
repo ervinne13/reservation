@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="box box-primary">
                 <div class="box-body">
-                    @include('pages.sales-invoices.print')
+                    @include('pages.request-payments.print')
                 </div>
             </div>
         </div>

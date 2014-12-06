@@ -4,7 +4,7 @@ var form_utilities = {
     moduleUrl: "/",
     updateObjectId: 0,
     validate: null,
-    postValidate: function () {},
+    postValidate: false,
     errorHandler: null,
     successHandler: null
 };
@@ -39,19 +39,24 @@ form_utilities.initializeDefaultProcessing = function ($form, $detailSGTable) {
     $('.action-button').click(function () {
 
         var valid = true;
+        //  validation 1
         if (form_utilities.validate) {
             valid = $form.valid();
+        }
+
+        //  validation 2
+        if (valid && form_utilities.postValidate) {
             valid = form_utilities.postValidate();
         }
 
         if (valid) {
             var type = $(this).attr('id');
             var data = form_utilities.formToJSON($form);
-            
+
             if ($detailSGTable) {
                 data.details = JSON.stringify($detailSGTable.getModifiedData());
             }
-            
+
             try {
                 form_utilities.process(type, data, function (success, message) {
                     if (success) {
@@ -90,6 +95,8 @@ form_utilities.initializeDefaultProcessing = function ($form, $detailSGTable) {
                     console.error(e);
                 }
             }
+        } else {
+            console.error("Validation failed");
         }
 
     });

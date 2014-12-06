@@ -205,6 +205,9 @@
         var valid = true;
         if (form_utilities.validate) {
             valid = $('.fields-container').valid();
+        }
+
+        if (form_utilities.postValidate) {
             form_utilities.postValidate();
         }
 

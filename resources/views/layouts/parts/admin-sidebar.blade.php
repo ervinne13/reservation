@@ -29,6 +29,13 @@
             </li>
             <li class="header">Finance, Loans & Payments</li>
             <li>
+                <a href="/reservations">
+                    <span><i class="fa fa-shopping-bag text-purple"></i> 
+                        Reservations
+                    </span>
+                </a>
+            </li>
+            <li>
                 <a href="/sales-invoices">
                     <span><i class="fa fa-money text-blue"></i> 
                         Sales Invoices

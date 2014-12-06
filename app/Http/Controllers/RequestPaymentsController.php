@@ -98,7 +98,10 @@ class RequestPaymentsController extends Controller {
      * @return Response
      */
     public function show($id) {
-        //
+        $viewData                   = $this->getDefaultViewData();
+        $viewData["requestPayment"] = RequestPayment::find($id);
+
+        return view('pages.request-payments.show', $viewData);
     }
 
     /**

@@ -24,6 +24,7 @@
                 {data: 'id'},
                 {data: 'model'},
                 {data: 'name'},
+                {data: 'stock'},
                 {data: 'cost'},
                 {data: 'stock'},
                 {data: 'description'}
@@ -37,6 +38,22 @@
 
                         var actions = [datatable_utilities.getDefaultEditAction(id)];
                         return datatable_utilities.getInlineActionsView(actions);
+
+                    }
+                },
+                {
+                    targets: 3,
+                    render: function (stock, type, rowData, meta) {
+
+                        if (stock >= 3) {
+                            return '<label class="text-success">In Stock</label>';
+                        } else if (stock < 3 && stock > 0) {
+                            return '<label class="text-warning">Critical Stock</label>';
+                        } else if (stock == 0) {
+                            return '<label class="text-danger">Out of Stock</label>';
+                        } else if (stock < 0) {
+                            return '<label class="text-danger">HAS COMMITTED STOCKS</label>';
+                        }
 
                     }
                 }

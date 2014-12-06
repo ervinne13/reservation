@@ -70,6 +70,11 @@ class SalesInvoicesController extends Controller {
                 $siDetailAssoc["document_number"] = $siHeader->document_number;
                 $siDetail                         = new SalesInvoiceDetail($siDetailAssoc);
                 $siDetail->save();
+
+                //  update stocks
+                $item = Item::find($siDetail->item_id);
+                $item->stock-= $siDetail->item_qty;
+                $item->save();
             }
 
             DB::commit();

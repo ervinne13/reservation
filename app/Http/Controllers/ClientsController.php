@@ -53,12 +53,18 @@ class ClientsController extends Controller {
             $user->display_name = $request->full_name;
             $user->role_name    = User::ROLE_CLIENT;
             $user->password     = \Hash::make($request->password);
+            $user->generateAPIToken();
             $user->save();
 
             $client = new Client($request->toArray());
             $client->save();
 
-            DB::commit();
+            DB::commit();                       
+            
+            $user->client = $client;
+            
+            return $user;
+            
         } catch (Exception $e) {
             DB::rollBack();
             return response($e->getMessage(), 500);

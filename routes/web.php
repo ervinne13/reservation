@@ -41,6 +41,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('sales-invoices', 'SalesInvoicesController');
     Route::delete('sales-invoice-details/{id}', 'SalesInvoicesController@destroyDetail');
 
+    Route::get('reservations/datatable', 'ReservationsController@datatable');
+    Route::resource('reservations', 'ReservationsController');
+    Route::get('reservations/{id}/convert', 'ReservationsController@convert');
+
     Route::get('amortization-loans/datatable', 'AmortizationLoansController@datatable');
     Route::resource('amortization-loans', 'AmortizationLoansController');
 
