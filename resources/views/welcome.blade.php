@@ -96,6 +96,7 @@
                 <div class="links">                                        
                     <!--<a href="https://laravel.com/docs">Documentation</a>-->
                     <!--<a href="https://laracasts.com">About Us</a>-->
+                    <a href="{{ url('/installer/ARCReservation.apk') }}">Download The Mobile App</a>
                     <a href="{{ url('/login') }}" class="text-fuchsia">Login</a>
                     <!--<a href="{{ url('/register') }}" class="text-blue">Register</a>-->
                 </div>
