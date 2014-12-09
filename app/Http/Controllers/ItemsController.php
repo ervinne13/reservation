@@ -25,7 +25,17 @@ class ItemsController extends Controller {
     }
 
     public function getAllJSON() {
-        return Item::all();
+        $items = Item::with('images')->get()->toArray();
+        return array_map(function($item) {
+            //  backwards compatibility with mobile            
+            $item["image_url"] = "";
+
+            if (count($item["images"]) > 0) {
+                $item["image_url"] = $item["images"][0]["url"];
+            }
+
+            return $item;
+        }, $items);
     }
 
     /**

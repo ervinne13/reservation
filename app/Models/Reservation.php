@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Reservation extends Model {
 
@@ -13,6 +14,15 @@ class Reservation extends Model {
         "reservation_amount",
         "status"
     ];
+
+    public static function getReservationsByClient() {
+
+        $queryString = "SELECT full_name AS client_name, count(item_id_to_reserve) AS reservation_count FROM reservations 
+                        LEFT JOIN clients ON reservations.reserved_by_username = clients.username
+                        GROUP BY full_name";
+
+        return DB::select(DB::raw($queryString));
+    }
 
     public function scopeReservedByUsername($query, $username) {
         return $query->where("reserved_by_username", $username);

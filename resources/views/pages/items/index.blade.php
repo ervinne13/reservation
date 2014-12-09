@@ -35,6 +35,7 @@
                                         <th>Status</th>
                                         <th>Item Cost</th>
                                         <th>Remaining Stocks</th>
+                                        <th>Committed Stocks</th>
                                         <th>Remarks</th>
                                     </tr>
                                 </thead>

@@ -9,6 +9,11 @@
     color: orange;
 }
 
+.text-white {
+    font-weight: 900;
+    color: white;
+}
+
 label.error {
     color: red;
 }

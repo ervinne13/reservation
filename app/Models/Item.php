@@ -44,4 +44,8 @@ class Item extends Model {
         ];
     }
 
+    public function images() {
+        return $this->hasMany(ItemImage::class);
+    }
+
 }

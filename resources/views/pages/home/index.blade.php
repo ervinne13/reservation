@@ -144,6 +144,37 @@
                 </div>
             </div><!-- /.box -->
 
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Reservations By Client</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table table-striped" >
+                        <thead>
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Reserved Items</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($clientReservations AS $clientReservation)
+                            <tr>
+                                <td>{{$clientReservation->client_name}}</td>
+                                <td>{{$clientReservation->reservation_count}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <a href="{{url("/reservations")}}">View All Reservations</a>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div><!-- /.box -->
+
         </div>
 
     </div>

@@ -27,6 +27,7 @@
                 {data: 'stock'},
                 {data: 'cost'},
                 {data: 'stock'},
+                {data: 'stock'},
                 {data: 'description'}
             ],
             columnDefs: [
@@ -53,6 +54,30 @@
                             return '<label class="text-danger">Out of Stock</label>';
                         } else if (stock < 0) {
                             return '<label class="text-danger">HAS COMMITTED STOCKS</label>';
+                        }
+
+                    }
+                },
+                {
+                    targets: 5,
+                    render: function (stock, type, rowData, meta) {
+
+                        if (stock < 0) {
+                            return 0;
+                        } else {
+                            return stock;
+                        }
+
+                    }
+                },
+                {
+                    targets: 6,
+                    render: function (stock, type, rowData, meta) {
+
+                        if (stock > 0) {
+                            return 0;
+                        } else {
+                            return stock * -1;
                         }
 
                     }

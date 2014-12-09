@@ -56,7 +56,7 @@
                     </span>
                 </a>
             </li>
-            <li class="header">Master Files</li>
+            <li class="header">Master List</li>
             <li>
                 <a href="/items">
                     <span><i class="fa fa-file text-blue"></i> 

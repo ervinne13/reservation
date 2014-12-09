@@ -17,7 +17,7 @@
 </script>
 
 <script type="text/html" id="bank-account-row-template">
-    <form id="phone-number-row-form" class="row" role="form" class="container">
+    <form id="bank-account-row-form" class="row" role="form" class="container">
 
         <div class="col-md-6">
             <div class="form-group">
