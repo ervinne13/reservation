@@ -67,22 +67,22 @@
 
                                 <div class="form-group">
                                     <label>Engine Type</label>
-                                    <input type="text" required name="engine_type" class="form-control" value="{{ $item->engine_type }}">
+                                    <input type="text" name="engine_type" class="form-control" value="{{ $item->engine_type }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Engine Stroke</label>
-                                    <input type="text" required name="engine_stroke" class="form-control" value="{{ $item->engine_stroke }}">
+                                    <input type="text" name="engine_stroke" class="form-control" value="{{ $item->engine_stroke }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Oil Capacity</label>
-                                    <input type="text" required name="oil_capacity" class="form-control" value="{{ $item->oil_capacity }}">
+                                    <input type="text" name="oil_capacity" class="form-control" value="{{ $item->oil_capacity }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Fuel Type</label>
-                                    <input type="text" required name="fuel_type" class="form-control" value="{{ $item->fuel_type }}">
+                                    <input type="text" name="fuel_type" class="form-control" value="{{ $item->fuel_type }}">
                                 </div>                                
                             </div>
 
