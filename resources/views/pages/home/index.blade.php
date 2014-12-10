@@ -125,11 +125,11 @@
                         <tbody>
                             <tr>                                
                                 <td>Items <b>Low in Stock</b></td>
-                                <td>{{$itemsSummary["critical_items"]}} Item(s), <a href="/items">View</a></td>
+                                <td>{{$itemsSummary["critical_items"]}} Item(s), <a href="/items/status/Low Stocks">View</a></td>
                             </tr>
                             <tr>                                
                                 <td>Items Out of Stock</td>
-                                <td>{{$itemsSummary["out_of_stock_items"]}} Item(s), <a href="/items">View</a></td>
+                                <td>{{$itemsSummary["out_of_stock_items"]}} Item(s), <a href="/items/status/Out of Stock">View</a></td>
                             </tr>
                             <tr>      
                                 @if ($itemsSummary["committed_stocks"] > 0)
@@ -137,7 +137,7 @@
                                 @else
                                 <td>Committed Stocks</td>
                                 @endif                                
-                                <td>{{$itemsSummary["committed_stocks"]}} Item(s), <a href="/items">View</a></td>
+                                <td>{{$itemsSummary["committed_stocks"]}} Item(s), <a href="/items/status/Committed Stocks">View</a></td>
                             </tr>
                         </tbody>
                     </table>

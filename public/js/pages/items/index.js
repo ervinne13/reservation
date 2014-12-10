@@ -10,6 +10,12 @@
     });
 
     function initializeTable() {
+
+        var url = "/items/datatable";
+        if (status) {
+            url = "/items/status/" + status + "/datatable";
+        }
+
         datatable = $('#datatable').DataTable({
             processing: true,
             serverSide: true,
@@ -17,7 +23,7 @@
                 caseInsensitive: true
             },
             ajax: {
-                url: "/items/datatable"
+                url: url
             },
             order: [1, "desc"],
             columns: [

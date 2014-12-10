@@ -44,6 +44,23 @@ class Item extends Model {
         ];
     }
 
+    public function scopeStatus($query, $status) {
+        switch ($status) {
+            case "In Stock":
+                return $query->where("stock", ">", 2);
+            case "Low Stocks":
+                return $query
+                                ->where("stock", ">", 2)
+                                ->where("stock", "<", 0);
+            case "Out of Stock":
+                return $query->where("stock", 0);
+            case "Committed Stocks":
+                return $query->where("stock", "<", 0);
+            default:
+                return $query;
+        }
+    }
+
     public function images() {
         return $this->hasMany(ItemImage::class);
     }

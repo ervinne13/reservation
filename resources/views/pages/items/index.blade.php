@@ -2,6 +2,11 @@
 
 @section('js')
 @parent
+
+<script type="text/javascript">
+    var status = "{{$status}}";
+</script>
+
 <script src="{{ asset ("/js/pages/items/index.js") }}" type="text/javascript"></script>
 @endsection
 
@@ -11,6 +16,9 @@
 <section class="content-header">
     <h1>
         Items Master Files
+        @if ($status)
+        <small><a href="{{url("/items")}}">Back to all Items</a></small>
+        @endif
     </h1>
 </section>
 

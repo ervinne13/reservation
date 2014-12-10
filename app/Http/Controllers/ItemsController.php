@@ -16,12 +16,23 @@ class ItemsController extends Controller {
      * @return Response
      */
     public function index() {
-        $viewData = $this->getDefaultViewData();
+        $viewData           = $this->getDefaultViewData();
+        $viewData["status"] = NULL;
         return view('pages.items.index', $viewData);
     }
 
     public function datatable() {
         return Datatables::of(Item::query())->make(true);
+    }
+
+    public function viewlistByStatus($status) {
+        $viewData           = $this->getDefaultViewData();
+        $viewData["status"] = $status;
+        return view('pages.items.index', $viewData);
+    }
+
+    public function datatableByStatus($status) {
+        return Datatables::of(Item::Status($status))->make(true);
     }
 
     public function getAllJSON() {

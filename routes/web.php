@@ -32,7 +32,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('clients', 'ClientsController');
 
     Route::get('items/datatable', 'ItemsController@datatable');
+    Route::get('items/status/{status}/datatable', 'ItemsController@datatableByStatus');
     Route::resource('items', 'ItemsController');
+    Route::get('items/status/{status}', 'ItemsController@viewlistByStatus');
 
     Route::resource('bank-accounts', 'BankAccountsController');
 
