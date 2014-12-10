@@ -50,8 +50,8 @@ class Item extends Model {
                 return $query->where("stock", ">", 2);
             case "Low Stocks":
                 return $query
-                                ->where("stock", ">", 2)
-                                ->where("stock", "<", 0);
+                                ->where("stock", "<", 2)
+                                ->where("stock", ">", 0);
             case "Out of Stock":
                 return $query->where("stock", 0);
             case "Committed Stocks":
