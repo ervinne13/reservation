@@ -26,7 +26,7 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            <a href="/users/create">
+                                            <a class="action-create-entry" href="/users/create">
                                                 <i class="fa fa-plus"></i>
                                             </a>
                                         </th>                                        

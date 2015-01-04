@@ -38,6 +38,10 @@
 
                         return datatable_utilities.getInlineActionsView(actions);
                     }
+                },
+                {
+                    targets: 5,
+                    render: datatable_utilities.formatCurrency
                 }
             ]
         });

@@ -4,11 +4,9 @@
 (function () {
 
     var datatable;
-
     $(document).ready(function () {
         initializeTable();
     });
-
     function initializeTable() {
 
         var url = "/items/datatable";
@@ -45,7 +43,6 @@
 
                         var actions = [datatable_utilities.getDefaultEditAction(id)];
                         return datatable_utilities.getInlineActionsView(actions);
-
                     }
                 },
                 {
@@ -63,6 +60,10 @@
                         }
 
                     }
+                },
+                {
+                    targets: 4,
+                    render: datatable_utilities.formatCurrency
                 },
                 {
                     targets: 5,

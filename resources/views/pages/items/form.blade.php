@@ -44,12 +44,12 @@
 
                                 <div class="form-group">
                                     <label>Cost</label>
-                                    <input type="number" required name="cost" class="form-control required" value="{{ $item->cost }}">
+                                    <input type="text" required name="cost" class="form-control required" value="{{ $item->cost }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Reservation Cost</label>
-                                    <input type="number" required name="reservation_cost" class="form-control required" value="{{ $item->reservation_cost }}">
+                                    <input type="text" required name="reservation_cost" class="form-control required" value="{{ $item->reservation_cost }}">
                                 </div>
 
                                 <div class="form-group">

@@ -50,6 +50,10 @@
 
                         return datatable_utilities.getInlineActionsView(actions);
                     }
+                },
+                {
+                    targets: 3,
+                    render: datatable_utilities.formatCurrency
                 }
             ]
         });

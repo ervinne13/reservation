@@ -46,3 +46,9 @@ datatable_utilities.getDefaultDeleteAction = function (id) {
         icon: "fa-times"
     };
 };
+
+datatable_utilities.formatCurrency = function (toFormat) {
+    return toFormat.toString().replace(
+            /\B(?=(\d{3})+(?!\d))/g, ","
+            );
+};

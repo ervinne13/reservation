@@ -16,6 +16,10 @@ form_utilities.formToJSON = function ($form) {
         var name = $(this).attr('name');
         var value = $(this).val();
 
+        if ($(this).data('autoNumeric')) {
+            value = $(this).autoNumeric('get');
+        }
+
         if (name && value) {
             json[name] = value;
         }

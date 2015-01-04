@@ -34,7 +34,7 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            <a href="/items/create">
+                                            <a class="action-create-entry" href="/items/create">
                                                 <i class="fa fa-plus"></i>
                                             </a>
                                         </th>                                        

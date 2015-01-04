@@ -26,7 +26,7 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            <a href="/amortization-loans/create">
+                                            <a class="action-create-entry" href="/amortization-loans/create">
                                                 <i class="fa fa-plus"></i>
                                             </a>
                                         </th>

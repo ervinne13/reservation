@@ -26,7 +26,7 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            <a href="/sales-invoices/create">
+                                            <a class="action-create-entry" href="/sales-invoices/create">
                                                 <i class="fa fa-plus"></i>
                                             </a>
                                         </th>                                        

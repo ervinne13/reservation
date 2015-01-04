@@ -55,3 +55,7 @@ label.error {
     font-weight: bold;
     color: red;
 }
+
+.action-create-entry {
+    color: green;
+}

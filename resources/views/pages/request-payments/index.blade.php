@@ -26,7 +26,7 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            <a href="/request-payments/create">
+                                            <a class="action-create-entry" href="/request-payments/create">
                                                 <i class="fa fa-plus"></i>
                                             </a>
                                         </th>                                        

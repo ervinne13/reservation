@@ -16,14 +16,17 @@ class Item extends Model {
         $criticalStockItemsQueryString = "SELECT COUNT(*) AS count FROM items WHERE stock < 3;";
         $outOfStockItemsQueryString    = "SELECT COUNT(*) AS count FROM items WHERE stock = 0;";
         $commitedStocksQueryString     = "SELECT COUNT(*) AS count FROM items WHERE stock < 0;";
+        $withStocksQueryString         = "SELECT COUNT(*) AS count FROM items WHERE stock > 2;";
 
         $criticalStockItems  = DB::select(DB::raw($criticalStockItemsQueryString));
         $outOfStockItems     = DB::select(DB::raw($outOfStockItemsQueryString));
         $committedStockItems = DB::select(DB::raw($commitedStocksQueryString));
+        $withStockItems      = DB::select(DB::raw($withStocksQueryString));
 
         $criticalStockItemCount = 0;
         $outOfStockItemCount    = 0;
         $committedStocks        = 0;
+        $withStocks             = 0;
 
         if ($criticalStockItems && count($criticalStockItems) > 0) {
             $criticalStockItemCount = $criticalStockItems[0]->count;
@@ -37,10 +40,15 @@ class Item extends Model {
             $committedStocks = $committedStockItems[0]->count;
         }
 
+        if ($withStockItems && count($withStockItems) > 0) {
+            $withStocks = $withStockItems[0]->count;
+        }
+
         return [
             "critical_items"     => $criticalStockItemCount,
             "out_of_stock_items" => $outOfStockItemCount,
             "committed_stocks"   => $committedStocks,
+            "with_stocks"        => $withStocks
         ];
     }
 

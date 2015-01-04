@@ -84,6 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="{{ asset ("/bower_components/AdminLTE/plugins/datepicker/bootstrap-datepicker.js") }}" type="text/javascript"></script>
 
         <script src="{{ asset ("/vendor/underscore/underscore.js") }}" type="text/javascript"></script>
+        <script src="{{ asset ("/vendor/autoNumeric/autoNumeric.js") }}" type="text/javascript"></script>
 
         <script src="{{ asset ("/js/utilities.js") }}" type="text/javascript"></script>
         <script src="{{ asset ("/js/globals.js") }}" type="text/javascript"></script>

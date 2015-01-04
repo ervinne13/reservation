@@ -7,8 +7,10 @@
 @include('templates.default-dropdown-table-actions')
 
 <script type="text/javascript">
-    var phoneNumbers = {!! $phoneNumbers !!};
-            var bankAccounts = {!! $bankAccounts !!};
+    var phoneNumbers = {!! $phoneNumbers !!}
+    ;
+            var bankAccounts = {!! $bankAccounts !!}
+    ;
 </script>
 
 <script src="{{ asset ("/vendor/underscore/underscore.js") }}" type="text/javascript"></script>
@@ -123,6 +125,10 @@
                 <div class="box-body">
                     <table class="table table-striped" >
                         <tbody>
+                            <tr>                                
+                                <td>Items In Stock</td>
+                                <td>{{$itemsSummary["with_stocks"]}} Item(s), <a href="/items/status/In Stock">View</a></td>
+                            </tr>
                             <tr>                                
                                 <td>Items <b>Low in Stock</b></td>
                                 <td>{{$itemsSummary["critical_items"]}} Item(s), <a href="/items/status/Low Stocks">View</a></td>
