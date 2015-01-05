@@ -72,8 +72,8 @@ class SalesInvoicesController extends Controller {
                 $siDetail->save();
 
                 //  update stocks
-                $item = Item::find($siDetail->item_id);
-                $item->stock-= $siDetail->item_qty;
+                $item        = Item::find($siDetail->item_id);
+                $item->stock -= $siDetail->item_qty;
                 $item->save();
             }
 

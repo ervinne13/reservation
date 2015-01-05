@@ -17,14 +17,14 @@
             </div>
             <div class="form-group">
                 <label>Payment Amount:</label>
-                <input type="number" required name="amount" class="form-control required">
+                <input type="text" required name="amount" class="form-control required" placeholder="xx,xxx.xx">
             </div>           
 
         </div>
         <div class="col-md-6">      
             <div class="form-group">
                 <label>Comment / Remarks</label>
-                <textarea class="form-control" name="comment"></textarea>
+                <textarea class="form-control" name="comment" placeholder="Fill in for any remarks for this payment"></textarea>
             </div>
         </div>
     </form>

@@ -24,6 +24,9 @@
     }
 
     function initializeUI() {
+
+        $('.autonumeric').autoNumeric();
+
         $('.datepicker').datepicker({
             autoclose: true,
             format: "yyyy-mm-dd",
@@ -48,17 +51,17 @@
         var invoiceDownPayment = $field.data('invoice-down-payment');
 
         $('[name=loan_by_username]').val(username);
-        $('[name=loan_amount]').val(parseFloat(invoiceAmount) - parseFloat(invoiceDownPayment));
-        $('[name=remaining_amount]').val(parseFloat(invoiceAmount) - parseFloat(invoiceDownPayment));
+        $('[name=loan_amount]').autoNumeric('set', parseFloat(invoiceAmount) - parseFloat(invoiceDownPayment));
+        $('[name=remaining_amount]').autoNumeric('set', parseFloat(invoiceAmount) - parseFloat(invoiceDownPayment));
     }
 
     function loadEstimations() {
-        var remainingAmount = $('[name=remaining_amount]').val();
+        var remainingAmount = $('[name=remaining_amount]').autoNumeric('get');
         var monthsToPay = $('[name=months_to_pay]').val();
         var interest = $('[name=annual_interest_rate]').val();
 
         if (monthsToPay > 0) {
-            $('[name=estimated_monthly_principal]').val(remainingAmount / monthsToPay);
+            $('[name=estimated_monthly_principal]').autoNumeric('set', remainingAmount / monthsToPay);
         }
 
         console.log(remainingAmount);
@@ -75,7 +78,7 @@
             var accruedInterest = totalAccruedAmount - remainingAmount;
             var monthlyAccruedInterest = accruedInterest / monthsToPay;
 
-            $('[name=estimated_monthly_interest]').val(monthlyAccruedInterest);
+            $('[name=estimated_monthly_interest]').autoNumeric('set', monthlyAccruedInterest);
         }
 
     }

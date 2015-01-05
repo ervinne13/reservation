@@ -63,22 +63,22 @@
 
                                 <div class="form-group">
                                     <label>Loan By</label>
-                                    <input type="text" required readonly name="loan_by_username" class="form-control required" value="{{ $aml->loan_by_username }}">
+                                    <input type="text" required readonly name="loan_by_username" class="form-control required" value="{{ $aml->loan_by_username }}" placeholder="Name">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Loan Amount</label>
-                                    <input type="number" required readonly name="loan_amount" class="form-control required" value="{{ $aml->loan_amount }}">
+                                    <input type="text" required readonly name="loan_amount" class="form-control required autonumeric" value="{{ $aml->loan_amount }}" placeholder="xx,xxx.xx">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Remaining Amount</label>
-                                    <input type="number" required readonly name="remaining_amount" class="form-control required" value="{{ $aml->remaining_amount }}">
+                                    <input type="text" required readonly name="remaining_amount" class="form-control required autonumeric" value="{{ $aml->remaining_amount }}" placeholder="xx,xxx.xx">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Number of Months to Pay</label>
-                                    <input type="number" required name="months_to_pay" class="form-control required" value="{{ $aml->months_to_pay }}">
+                                    <input type="number" required name="months_to_pay" class="form-control required" value="{{ $aml->months_to_pay }}" placeholder="xx">
                                 </div>
 
                             </div>
@@ -86,12 +86,12 @@
 
                                 <div class="form-group">
                                     <label>Date Received</label>
-                                    <input type="text" required name="date_received" class="form-control required datepicker" value="{{ $aml->date_received }}">
+                                    <input type="text" required name="date_received" class="form-control required datepicker" value="{{ $aml->date_received }}" placeholder="xxxx-xx-xx">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Annual Interest Rate</label>
-                                    <input type="number" required name="annual_interest_rate" class="form-control required" value="{{ $aml->annual_interest_rate }}">
+                                    <input type="number" required name="annual_interest_rate" class="form-control required" value="{{ $aml->annual_interest_rate }}" placeholder="x.xxx">
                                 </div>
 
                                 <div class="form-group">
@@ -99,22 +99,22 @@
                                         Prevailing Interest Rate
                                         <small>(For Reference Only)</small>
                                     </label>
-                                    <input type="number" name="prevailing_interest_rate" class="form-control" value="{{ $aml->prevailing_interest_rate }}">
+                                    <input type="number" name="prevailing_interest_rate" class="form-control" value="{{ $aml->prevailing_interest_rate }}" placeholder="x.xxx">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Estimated Monthly Principal</label>
-                                    <input type="number" required readonly name="estimated_monthly_principal" class="form-control required" value="{{ $aml->estimated_monthly_principal }}">
+                                    <input type="text" required readonly name="estimated_monthly_principal" class="form-control required autonumeric" value="{{ $aml->estimated_monthly_principal }}" placeholder="xx,xxx.xx">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Estimated Monthly Interest</label>
-                                    <input type="number" required readonly name="estimated_monthly_interest" class="form-control required" value="{{ $aml->estimated_monthly_interest }}">
+                                    <input type="text" required readonly name="estimated_monthly_interest" class="form-control required autonumeric" value="{{ $aml->estimated_monthly_interest }}" placeholder="xx,xxx.xx">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Remarks</label>
-                                    <textarea name="remarks" class="form-control">{{ $aml->remarks }}</textarea>
+                                    <textarea name="remarks" class="form-control" placeholder="Fill in for any remarks for this transaction">{{ $aml->remarks }}</textarea>
                                 </div>                               
                             </div>
                         </div>

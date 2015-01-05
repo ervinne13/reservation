@@ -48,6 +48,8 @@
     }
 
     function initializeUI() {
+        $('.autonumeric').autoNumeric();
+
         $('.datepicker').datepicker({
             autoclose: true,
             format: "yyyy-mm-dd",
@@ -106,11 +108,16 @@
 
         $detailsTable.setData(details);
         $detailsTable.on('openRow', function (e, id) {
+            initializeDetailRow();
             initializeDetailEvents();
         });
 
         //  row events
         sg_table_row_utilities.initializeDeleteEvent('tbl-details', onDeleteConfirmed, onDeletedTemporaryRow);
+    }
+
+    function initializeDetailRow() {
+        $('[name=amount]').autoNumeric();
     }
 
     function initializeDetailEvents() {
@@ -149,7 +156,7 @@
         $('.tbl-details-row').each(function () {
             total += parseFloat($(this).find('td[data-name=amount]').data('value'));
         });
-        $('[name=total_payment]').val(total);
+        $('[name=total_payment]').autoNumeric('set', total);
     }
 
     //<editor-fold defaultstate="collapsed" desc="Posting Functions">

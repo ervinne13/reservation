@@ -21,6 +21,7 @@ class ItemsSeeder extends Seeder {
         $items = [
             [
                 "id"               => 1,
+                "category"         => "Scooter",
                 "model"            => "JR125",
                 "name"             => "Racal JR125",
                 "cost"             => "60000",
@@ -32,6 +33,7 @@ class ItemsSeeder extends Seeder {
             ],
             [
                 "id"               => 2,
+                "category"         => "Kick Start",
                 "model"            => "MD100",
                 "name"             => "Racal MD100",
                 "cost"             => "40000",
@@ -43,6 +45,7 @@ class ItemsSeeder extends Seeder {
             ],
             [
                 "id"               => 3,
+                "category"         => "Kick Start",
                 "model"            => "MD110",
                 "name"             => "Racal MD110",
                 "cost"             => "50000",
@@ -54,6 +57,7 @@ class ItemsSeeder extends Seeder {
             ],
             [
                 "id"               => 4,
+                "category"         => "Kick Start",
                 "model"            => "Speed X125",
                 "name"             => "Racal Speed X125",
                 "cost"             => "60000",
@@ -65,6 +69,7 @@ class ItemsSeeder extends Seeder {
             ],
             [
                 "id"               => 5,
+                "category"         => "Kick Start",
                 "model"            => "TS125",
                 "name"             => "Racal TS125",
                 "cost"             => "60000",

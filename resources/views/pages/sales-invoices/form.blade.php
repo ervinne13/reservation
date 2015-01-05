@@ -49,7 +49,7 @@
 
                                 <div class="form-group">
                                     <label>Invoice Amount</label>
-                                    <input type="number" required readonly name="total_amount" class="form-control required" value="{{ $salesInvoice->total_amount }}">
+                                    <input type="text" required readonly name="total_amount" class="form-control required" value="{{ $salesInvoice->total_amount }}" placeholder="xx,xxx.xx">
                                 </div>
 
                                 <div class="form-group">
@@ -57,12 +57,12 @@
                                         Down Payment
                                         <small>For fully paid motorcycles, enter the full amount here</small>
                                     </label>
-                                    <input type="number" name="down_payment" class="form-control" value="{{ $salesInvoice->down_payment }}">
+                                    <input type="text" name="down_payment" class="form-control" value="{{ $salesInvoice->down_payment }}" placeholder="xx,xxx.xx">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Remarks</label>
-                                    <textarea name="remarks" class="form-control">{{ $salesInvoice->remarks }}</textarea>
+                                    <textarea name="remarks" class="form-control" placeholder="Fill in for any remarks for this transaction">{{ $salesInvoice->remarks }}</textarea>
                                 </div>
 
                             </div>

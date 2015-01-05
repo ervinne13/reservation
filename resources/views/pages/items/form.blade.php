@@ -34,56 +34,67 @@
                             <div class="col-lg-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Model Number</label>
-                                    <input type="text" required name="model" class="form-control required" value="{{ $item->model }}">
+                                    <input type="text" required name="model" class="form-control required" value="{{ $item->model }}" placeholder="xxx-xxxx">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" required name="name" class="form-control required" value="{{ $item->name }}">
+                                    <input type="text" required name="name" class="form-control required" value="{{ $item->name }}" placeholder="Ex. Racal TS125">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Cost</label>
-                                    <input type="text" required name="cost" class="form-control required" value="{{ $item->cost }}">
+                                    <input type="text" required name="cost" class="form-control required" value="{{ $item->cost }}" placeholder="xx,xxx.xx">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Reservation Cost</label>
-                                    <input type="text" required name="reservation_cost" class="form-control required" value="{{ $item->reservation_cost }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Current Stock</label>
-                                    <input type="number" name="stock" class="form-control" value="{{ $item->stock }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea name="description" class="form-control">{{ $item->description }}</textarea>
+                                    <!--<label>Reservation Cost</label>-->
+                                    <label>Downpayment</label>
+                                    <input type="text" required name="reservation_cost" class="form-control required" value="{{ $item->reservation_cost }}" placeholder="xx,xxx.xx">
                                 </div>
 
                             </div>
                             <div class="col-lg-6 col-sm-12">
 
-                                <div class="form-group">
-                                    <label>Engine Type</label>
-                                    <input type="text" name="engine_type" class="form-control" value="{{ $item->engine_type }}">
-                                </div>
+                                <!--<div class="form-group">
+                                                                    <label>Engine Type</label>
+                                                                    <input type="text" name="engine_type" class="form-control" value="{{ $item->engine_type }}">
+                                                                </div>
+                                
+                                                                <div class="form-group">
+                                                                    <label>Engine Stroke</label>
+                                                                    <input type="text" name="engine_stroke" class="form-control" value="{{ $item->engine_stroke }}">
+                                                                </div>
+                                
+                                                                <div class="form-group">
+                                                                    <label>Oil Capacity</label>
+                                                                    <input type="text" name="oil_capacity" class="form-control" value="{{ $item->oil_capacity }}">
+                                                                </div>-->
 
                                 <div class="form-group">
-                                    <label>Engine Stroke</label>
-                                    <input type="text" name="engine_stroke" class="form-control" value="{{ $item->engine_stroke }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Oil Capacity</label>
-                                    <input type="text" name="oil_capacity" class="form-control" value="{{ $item->oil_capacity }}">
+                                    <label>Category</label>
+                                    <select class="form-control" name="category">
+                                        @foreach($categories AS $category)
+                                        <?php $selected = $category == $item->category ? "selected" : "" ?>
+                                        <option value="{{$category}}" {{$selected}}>{{$category}}</option>
+                                        @endforeach
+                                    </select>                                    
                                 </div>
 
                                 <div class="form-group">
                                     <label>Fuel Type</label>
                                     <input type="text" name="fuel_type" class="form-control" value="{{ $item->fuel_type }}">
-                                </div>                                
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Current Stock</label>
+                                    <input type="number" name="stock" class="form-control" value="{{ $item->stock }}" placeholder="how many does the store has left?">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea name="description" class="form-control" placeholder="Other information about the product">{{ $item->description }}</textarea>
+                                </div>
                             </div>
 
                             <div class="col-lg-12">

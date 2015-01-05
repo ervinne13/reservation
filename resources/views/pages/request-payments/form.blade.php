@@ -49,7 +49,7 @@
 
                                 <div class="form-group">
                                     <label>Due Date</label>
-                                    <input type="text" required name="due_date" class="form-control required datepicker" value="{{ $rp->due_date }}">
+                                    <input type="text" required name="due_date" class="form-control required datepicker" value="{{ $rp->due_date }}" placeholder="xxxx-xx-xx">
                                 </div>                                
 
                                 <div class="form-group">
@@ -75,12 +75,12 @@
 
                                 <div class="form-group">
                                     <label>Total Payment</label>
-                                    <input type="number" required readonly name="total_payment" class="form-control required" value="{{ $rp->total_payment }}">
+                                    <input type="text" required readonly name="total_payment" class="form-control autonumeric required" value="{{ $rp->total_payment }}" placeholder="xx,xxx.xx">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Remarks</label>
-                                    <textarea name="remarks" class="form-control">{{ $rp->remarks }}</textarea>
+                                    <textarea name="remarks" class="form-control" placeholder="Fill in for any remarks for this transaction">{{ $rp->remarks }}</textarea>
                                 </div>
 
                             </div>                            
@@ -88,32 +88,32 @@
 
                                 <div class="form-group">
                                     <label>Loan Annual Interest Rate</label>
-                                    <input type="text" readonly name="aml_annual_interest_rate" class="form-control">
+                                    <input type="text" readonly name="aml_annual_interest_rate" class="form-control" placeholder="x.xxx">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Loan Prevailing Interest Rate</label>
-                                    <input type="text" readonly name="aml_prevailing_interest_rate" class="form-control">
+                                    <input type="text" readonly name="aml_prevailing_interest_rate" class="form-control" placeholder="x.xxx">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Loan Amount</label>
-                                    <input type="text" readonly name="aml_loan_amount" class="form-control">
+                                    <input type="text" readonly name="aml_loan_amount" class="form-control autonumeric" placeholder="xx,xxx.xx">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Remaining Amount</label>
-                                    <input type="text" readonly name="aml_remaining_amount" class="form-control">
+                                    <input type="text" readonly name="aml_remaining_amount" class="form-control autonumeric" placeholder="xx,xxx.xx">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Estimated Monthly Principal</label>
-                                    <input type="text" readonly name="aml_estimated_monthly_principal" class="form-control">
+                                    <input type="text" readonly name="aml_estimated_monthly_principal" class="form-control autonumeric" placeholder="xx,xxx.xx">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Estimated Monthly Interest</label>
-                                    <input type="text" readonly name="aml_estimated_monthly_interest" class="form-control">
+                                    <input type="text" readonly name="aml_estimated_monthly_interest" class="form-control autonumeric" placeholder="xx,xxx.xx">
                                 </div>
 
                             </div>

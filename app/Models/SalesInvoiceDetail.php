@@ -11,4 +11,8 @@ class SalesInvoiceDetail extends Model {
         "document_number", "item_id", "item_model", "item_name", "item_cost", "item_qty", "sub_total"
     ];
 
+    public function item() {
+        return $this->belongsTo(Item::class, "item_id");
+    }
+
 }

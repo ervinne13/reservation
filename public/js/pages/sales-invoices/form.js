@@ -9,6 +9,9 @@
         details = JSON.parse(details);
 //        utilities.markFieldLabelRequired("ALL");        
 
+        console.log(details);
+
+        initializeUI();
         initilizeEvents();
 
         loadIssuedToUserInfo();
@@ -22,6 +25,11 @@
         form_utilities.updateObjectId = docNo;
         form_utilities.validate = true;
         form_utilities.initializeDefaultProcessing($('.fields-container'), $detailsTable);
+    }
+
+    function initializeUI() {
+        $('[name=total_amount]').autoNumeric();
+        $('[name=down_payment]').autoNumeric();
     }
 
     function initilizeEvents() {
@@ -59,9 +67,10 @@
                 item_id: {label: "Item ID.", hidden: true},
                 item_model: {label: "Item Model"},
                 item_name: {label: "Item Name"},
-                item_cost: {label: "Item Cost"},
+                item_cost: {label: "Item Cost", displayFormat: "currency", autoNumeric: true, class: "right-align"},
+                reservation_cost: {label: "", hidden: true},
                 item_qty: {label: "Item Qty"},
-                sub_total: {label: "Sub Total"},
+                sub_total: {label: "Sub Total", displayFormat: "currency", autoNumeric: true, class: "right-align"},
             }
         });
 
@@ -143,10 +152,14 @@
 
     function computeTotal() {
         var total = 0;
+        var downpayment = 0;
         $('.tbl-details-row').each(function () {
             total += parseFloat($(this).find('td[data-name=item_cost]').data('value'));
+            downpayment = total * 0.1;
         });
-        $('[name=total_amount]').val(total);
+
+        $('[name=total_amount]').autoNumeric('set', total);
+        $('[name=down_payment]').autoNumeric('set', downpayment);
     }
 
 })();

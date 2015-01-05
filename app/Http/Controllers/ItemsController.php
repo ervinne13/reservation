@@ -10,6 +10,8 @@ use Yajra\Datatables\Datatables;
 
 class ItemsController extends Controller {
 
+    protected $itemCategories = ["Scooter", "Kick Start", "Underbone", "Backbone"];
+
     /**
      * Display a listing of the resource.
      *
@@ -56,9 +58,10 @@ class ItemsController extends Controller {
      */
     public function create() {
 
-        $viewData         = $this->getDefaultViewData();
-        $viewData["item"] = new Item();
-        $viewData["mode"] = "ADD";
+        $viewData               = $this->getDefaultViewData();
+        $viewData["categories"] = $this->itemCategories;
+        $viewData["item"]       = new Item();
+        $viewData["mode"]       = "ADD";
 
         return view('pages.items.form', $viewData);
     }
@@ -101,9 +104,10 @@ class ItemsController extends Controller {
      * @return Response
      */
     public function edit($id) {
-        $viewData         = $this->getDefaultViewData();
-        $viewData["item"] = Item::find($id);
-        $viewData["mode"] = "EDIT";
+        $viewData               = $this->getDefaultViewData();
+        $viewData["categories"] = $this->itemCategories;
+        $viewData["item"]       = Item::find($id);
+        $viewData["mode"]       = "EDIT";
 
         return view('pages.items.form', $viewData);
     }

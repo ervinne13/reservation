@@ -8,7 +8,7 @@
     //  Static Views    
     var closeRowActionIcon = '<i class="fa fa-caret-down"></i>';
     var openRowActionIcon = '<i class="fa fa-edit"></i>';
-    var deleteRowActionIcon = '<i class="glyphicon glyphicon-remove"></i>';
+    var deleteRowActionIcon = '<i class="fa fa-remove"></i>';
 
     //  Events
     var EVENT_ON_OPEN_ROW = "openRow";
@@ -51,9 +51,6 @@
         var _this = this;
         this.indexedRowIdList = [];
 
-        //  buffers
-        this.deletedRows = [];
-
         //  
         /*     * ************************************************************************* */
         //  validatesOnSave<editor-fold defaultstate="collapsed" desc="Saving Functions (Composite Table Data Functions)">
@@ -81,9 +78,8 @@
         this.saveCurrentOpenRow = function (formData) {
 
             var rowId = $(_this.selector + ' .dropdown-row').data('id');
-            var mode = $(_this.selector + ' .dropdown-row').data('mode');
 
-            if (mode == "create") {
+            if (rowId == 0) {
                 _this.addRow(formData);
             } else {
                 _this.updateRow(rowId, formData);
@@ -104,8 +100,7 @@
                 rows.push(_this.getRowData(id));
             });
 
-            //  include deleted rows
-            return rows.concat(this.deletedRows);
+            return rows;
         };
 
         this.getModifiedData = function () {
@@ -116,13 +111,13 @@
                 modifiedRows.push(_this.getRowData(id));
             });
 
-            //  include deleted rows
-            return modifiedRows.concat(this.deletedRows);
+            return modifiedRows;
+
         };
 
         this.getRowData = function (rowId) {
-            var dataRowSelector = '.' + _this.generateRowClassName() + '[data-id=' + rowId + ']';
-            var dataColSeletor = '.' + _this.generateRowClassName() + '[data-id=' + rowId + '] td.data-col';
+            var dataRowSelector = '.' + _this.generateRowClassName() + '[data-id="' + rowId + '"]';
+            var dataColSeletor = '.' + _this.generateRowClassName() + '[data-id="' + rowId + '"] td.data-col';
 
             var rowState = $(dataRowSelector).data('state');
             var data = {
@@ -168,14 +163,10 @@
             var cols = _this.sgOptions.columns;
             var rowSelector = 'tr.' + _this.generateRowClassName() + '[data-id="' + id + '"]';
 
-            var newState;
-            if ($(rowSelector).data('state') == 'created') {
-                newState = "created";
-            } else {
-                newState = "updated";
+            //  rows that are just created should stay "created", only unmodified rows can be "updated"
+            if ($(rowSelector).data('state') == 'unmodified') {
+                $(rowSelector).replaceWith(_this.generateRowHtml(id, cols, rowData, 'updated'));
             }
-
-            $(rowSelector).replaceWith(_this.generateRowHtml(id, cols, rowData, newState));
 
             _this.indexRows();
 
@@ -235,12 +226,7 @@
         this.generateRowHtml = function (id, columns, rowData, state) {
             var rowHtml = '<tr class="' + _this.generateRowClassName() + ' " data-id=' + id + ' data-state="' + state + '">';
 
-            if (_this.sgOptions.disableRowActions && _this.sgOptions.disableRowActions(id, columns, rowData, state)) {
-                rowHtml += '<td></td>';
-            } else {
-                rowHtml += '<td>' + _this.generateRowActions(id) + '</td>';
-            }
-
+            rowHtml += '<td>' + _this.generateRowActions(id) + '</td>';
             for (var key in columns) {
                 var displayStyle = '';
 
@@ -251,10 +237,6 @@
                 var value = rowData[key];
                 var display;
 
-                if (state == "created" && !rowData[key] && columns[key].defaultValue) {
-                    value = columns[key].defaultValue;
-                }
-
                 //  if the display should be different from the value
                 if (columns[key].displaySourceField) {
                     display = rowData[columns[key].displaySourceField];
@@ -262,13 +244,8 @@
                     display = value;
                 }
 
-                if (columns[key].format || columns[key].displayFormat) {
-                    try {
-                        display = format(columns[key], display, true);  //  true = format display
-                    } catch (e) {
-                        console.error("SGTable", "An exception occured while formatting " + key + " with value " + columns[key]);
-                        throw e;
-                    }
+                if (columns[key].format) {
+                    display = formatValue(columns[key], display, true);  //  true = format display
                 }
 
                 var additionalClass = columns[key].class ? columns[key].class : '';
@@ -315,14 +292,23 @@
 
         this.generateRowActions = function (id) {
             var editButtonClass = _this.getGeneratedRowEditButtonClassName();
-            var deleteButtonClass = _this.getGeneratedRowDeleteButtonClassName();
+            var actions = ['<a href="javascript:void(0)" class="' + editButtonClass + '" data-id="' + id + '">' + openRowActionIcon + '</a>'];
 
-            var editAction = '<a href="javascript:void(0)" class="' + editButtonClass + '" data-id="' + id + '">' + openRowActionIcon + '</a>';
-            var deleteAction = '<a href="javascript:void(0)" class="' + deleteButtonClass + '" data-id="' + id + '">' + deleteRowActionIcon + '</a>';
+            if (_this.sgOptions.enableDeleteRows === true) {
+                var deleteButtonClass = _this.getGeneratedRowDeleteButtonClassName();
+                actions.push('<a href="javascript:void(0)" class="' + deleteButtonClass + '" data-id="' + id + '">' + deleteRowActionIcon + '</a>');
+            }
 
-            var actions = editAction + " " + deleteAction;
+//            var buttons = "<ul>";
+            var buttons = "";
 
-            return actions;
+            for (var i in actions) {
+                buttons += "<span>" + actions[i] + "</span>";
+            }
+
+//            buttons += "</ul>";
+
+            return buttons;
         };
 
         this.getGeneratedRowEditButtonClassName = function () {
@@ -334,15 +320,10 @@
             //  substring removes #
             return $(this).selector.substring(1) + '-action-delete-row';
         };
-
         //  </editor-fold>
 
         /*     * ************************************************************************* */
         //  <editor-fold defaultstate="collapsed" desc="Open Row Functions">
-
-        this.isRowCurrentlyOpened = function () {
-            return $('.dropdown-row').length > 0;
-        };
 
         this.openNextRow = function (currentRowId) {
             var currentRowIndex = _this.indexedRowIdList.indexOf(currentRowId);
@@ -363,7 +344,7 @@
         };
 
         this.openRowForEditing = function (id) {
-            var selector = '.' + _this.getGeneratedRowEditButtonClassName() + '[data-id=' + id + ']';
+            var selector = '.' + _this.getGeneratedRowEditButtonClassName() + '[data-id="' + id + '"]';
             var isActive = $(selector).hasClass('active');
 
             _this.closeOpenRow();
@@ -378,31 +359,6 @@
         };
 
         //  </editor-fold>
-
-        /*     * ************************************************************************* */
-        //<editor-fold defaultstate="collapsed" desc="Deletion Functions">
-
-        this.deleteRow = function (id) {
-            var rowData = this.getRowData(id);
-
-            if (rowData.rowState != "created") {
-                //  all rows that are already saved in the database should be marked
-                //  as deleted in the table data
-                rowData.rowState = "deleted";
-                this.deletedRows.push(rowData);
-            }
-
-            //  delete from view
-            $('.' + this.generateRowClassName() + "[data-id=" + id + "]").remove();
-
-            if (this.options.onDelete) {
-                this.options.onDelete(rowData);
-            }
-
-        };
-
-        //</editor-fold>
-
 
         generateHeaderRow(this);
         initializeComponents(this);
@@ -526,21 +482,9 @@
         });
 
         var editButton = sgTable.getGeneratedRowEditButtonClassName();
-        $(sgTable.selector).on('click', '.' + editButton, function () {
+        $(document).on('click', '.' + editButton, function () {
             var id = $(this).data('id');
             sgTable.openRowForEditing(id);
-        });
-
-        var deleteButton = sgTable.getGeneratedRowDeleteButtonClassName();
-        $(sgTable.selector).on('click', '.' + deleteButton, function () {
-            var id = $(this).data('id');
-
-            confirm("Are you sure you want to delete this entry?", function (confirmed) {
-                if (confirmed) {
-                    sgTable.deleteRow(id);
-                }
-            });
-
         });
 
     }
@@ -576,7 +520,7 @@
     }
 
     function createOpenRow(id, mode) {
-        var dropdownRow = dropdownRowTemplate({id: id, mode: mode});
+        var dropdownRow = dropdownRowTemplate({id: id});
         var actions = "";
 
         if (mode === 'edit') {
@@ -589,7 +533,7 @@
             dropdownRow += actions;
         }
 
-        var dropdownRowWrapped = '<tr id="dropdown-row-' + id + '" data-id="' + id + '" data-mode="' + mode + '" class="dropdown-row"><td style="display: table-cell" colspan="' + columnCount + '">' + dropdownRow + '<div class="clearfix"></div></td></tr>';
+        var dropdownRowWrapped = '<tr id="dropdown-row-' + id + '" data-id="' + id + '" class="dropdown-row"><td style="display: table-cell" colspan="' + columnCount + '">' + dropdownRow + '<div class="clearfix"></div></td></tr>';
 
         return dropdownRowWrapped;
     }
@@ -624,42 +568,17 @@
             var value;
             if ($.fn.autoNumeric && cols[key].autoNumeric) {
                 value = rowValues[key];
-
-                if (!$('.dropdown-row [name=' + key + ']').data('autoNumeric')) {
-                    $('.dropdown-row [name=' + key + ']').autoNumeric();
-                }
-
-            } else if (cols[key].stringifyOnAssignValue) {
-                value = JSON.stringify(rowValues[key]);
             } else {
-                value = format(cols[key], rowValues[key]);
+                value = formatValue(cols[key], rowValues[key]);
             }
 
             // lazy values are for fields that require somethings to be done first before setting their value            
-            $('.dropdown-row [name=' + key + ']').attr('data-lazy-value', value);
+            $('.dropdown-row [name="' + key + '"]').attr('data-lazy-value', value);
+            $('.dropdown-row [name="' + key + '"]').val(value);
 
-            if ($('.dropdown-row [name=' + key + ']').data('autoNumeric')) {
-                $('.dropdown-row [name=' + key + ']').autoNumeric('set', value);
-            } else {
-                $('.dropdown-row [name=' + key + ']').val(value);
-            }
-
-            if (cols[key].type == 'checkbox' && value == 1) {
-                $('.dropdown-row [name=' + key + ']').attr('checked', '');
-            } else if (cols[key].type == 'select') {
-                var content = $('.dropdown-row [name=' + key + ']').html().trim();
-                var selectedOption = $('.dropdown-row [name=' + key + '] option:selected').text();
-                var optionCount = $('.dropdown-row [name=' + key + '] option').length;
-
-//                console.log("Content", content);
-//                console.log("selectedOption", selectedOption);
-//                console.log("optionCount", optionCount);
-
-                if (value && (content == "" || (optionCount <= 1 && selectedOption == ""))) {
-                    //  if this select is empty, add an option then set the value again
-                    $('.dropdown-row [name=' + key + ']').html('<option value="' + value + '">' + value.trim() + '</option>');
-                    $('.dropdown-row [name=' + key + ']').val(value);
-                }
+            if ($.fn.autoNumeric && cols[key].autoNumeric) {
+                $('[name="' + key + '"]').autoNumeric();
+                $('[name="' + key + '"]').focusout();
             }
         }
     }
@@ -669,7 +588,7 @@
     /*     * ************************************************************************* */
     //  <editor-fold defaultstate="collapsed" desc="Formatter Functions">
 
-    function format(columnData, value, display) {
+    function formatValue(columnData, value, display) {
 
         display = display ? display : false;    //  avoid undefined
         columnDataFormat = display ? columnData.displayFormat : columnData.valueFormat;

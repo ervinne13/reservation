@@ -10,7 +10,7 @@ class RequestPayment extends Model {
     protected $primaryKey = "document_number";
     public $incrementing  = false;
     protected $fillable   = [
-        "document_number", "document_date", "applies_to", "due_date", "total_payment", "payment_by_username", "payment_by_name", "payment_by_address", "remarks"
+        "document_number", "document_date", "applies_to", "due_date", "total_payment", "issued_by_username", "payment_by_username", "payment_by_name", "payment_by_address", "remarks"
     ];
 
     public static function make() {

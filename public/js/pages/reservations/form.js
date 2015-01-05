@@ -5,9 +5,10 @@
 
     $(document).ready(function () {
 
+        initializeUI();
         initializeEvents();
 
-    });
+    });   
 
     function initializeEvents() {
 
