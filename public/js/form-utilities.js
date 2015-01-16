@@ -93,10 +93,9 @@ form_utilities.initializeDefaultProcessing = function ($form, $detailSGTable) {
                     }
                 });
             } catch (e) {
+                console.error(e);
                 if (e.statusText) {
                     swal("Error!", e.statusText, "error");
-                } else {
-                    console.error(e);
                 }
             }
         } else {

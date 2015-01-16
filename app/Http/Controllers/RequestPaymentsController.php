@@ -168,10 +168,10 @@ class RequestPaymentsController extends Controller {
                         $principalPayment += $rpDetail["amount"];
                         break;
                     case "INTEREST":
-                        $interestPayment += $rpDetail["amount"];
+                        $interestPayment  += $rpDetail["amount"];
                         break;
                     case "PENALTY":
-                        $penaltyPayment += $rpDetail["amount"];
+                        $penaltyPayment   += $rpDetail["amount"];
                         break;
                 }
             }
@@ -191,6 +191,7 @@ class RequestPaymentsController extends Controller {
 
             $amlDetail                          = new AmortizationLoanDetail();
             $amlDetail->document_number         = $aml->document_number;
+            $amlDetail->payment_date            = $rpHeader->document_date;
             $amlDetail->payment_document_number = $rpHeader->document_number;
             $amlDetail->payment_amount          = $rpHeader->total_payment;
             $amlDetail->principal_payment       = $principalPayment;
@@ -231,10 +232,10 @@ class RequestPaymentsController extends Controller {
                         $principalPayment += $rpDetail->amount;
                         break;
                     case "INTEREST":
-                        $interestPayment += $rpDetail->amount;
+                        $interestPayment  += $rpDetail->amount;
                         break;
                     case "PENALTY":
-                        $penaltyPayment += $rpDetail->amount;
+                        $penaltyPayment   += $rpDetail->amount;
                         break;
                 }
             }

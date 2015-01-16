@@ -41,4 +41,8 @@ class AmortizationLoan extends Model {
                         ->orWhere('document_number', $amlDocNo);
     }
 
+    public function scopeUsername($query, $username) {
+        return $query->where('loan_by_username', $username);
+    }
+
 }

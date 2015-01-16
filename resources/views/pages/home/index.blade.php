@@ -126,7 +126,7 @@
                     <table class="table table-striped" >
                         <tbody>
                             <tr>                                
-                                <td>Items In Stock</td>
+                                <td>Items <b class="text-green">In Stock</b></td>
                                 <td>{{$itemsSummary["with_stocks"]}} Item(s), <a href="/items/status/In Stock">View</a></td>
                             </tr>
                             <tr>                                

@@ -26,6 +26,10 @@ class AmortizationLoansController extends Controller {
         return Datatables::of(AmortizationLoan::query())->make(true);
     }
 
+    public function getByUserJSON($username) {
+        return AmortizationLoan::With('details')->username($username)->get();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

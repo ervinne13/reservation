@@ -90,6 +90,15 @@
                             </div>
                         </div>
                     </form>
+
+                    @if ($mode == "EDIT" || $mode == "VIEW")                   
+                    <div class="row">
+                        <div class="col-lg-12">                            
+                            @include("pages.clients.payments-table")
+                        </div>
+                    </div>
+                    @endif                    
+
                 </div><!-- ./box-body -->
                 <div class="box-footer">
                     @include('module.parts.actions')

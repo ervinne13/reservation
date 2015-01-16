@@ -39,8 +39,7 @@ class ClientsController extends Controller {
     }
 
     /**
-     * Store a newly created resource in storage.
-      Requestnate\Http\Request  $requesResponseate\Http\Response
+     * Store a newly created resource in storage.      
      */
     public function store(Request $request) {
 

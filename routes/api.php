@@ -21,6 +21,7 @@ Route::group(['middleware' => 'cors'], function () {
     Route::get('items', 'ItemsController@getAllJSON');
     Route::get('bank-accounts', 'BankAccountsController@getAllJSON');
     Route::get('reservations/{username}', 'ReservationsController@getByUserJSON');
+    Route::get('loans/{username}', 'AmortizationLoansController@getByUserJSON');
 
     Route::post('clients', 'ClientsController@store');
     Route::post('login', 'UsersController@apiLogin');

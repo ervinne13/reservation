@@ -3,8 +3,6 @@
 
 (function () {
 
-    var $detailsTable;
-
     $(document).ready(function () {
         details = JSON.parse(details);
 //        utilities.markFieldLabelRequired("ALL");        
@@ -20,7 +18,7 @@
         form_utilities.moduleUrl = "/amortization-loans";
         form_utilities.updateObjectId = docNo;
         form_utilities.validate = true;
-        form_utilities.initializeDefaultProcessing($('.fields-container'), $detailsTable);
+        form_utilities.initializeDefaultProcessing($('.fields-container'));
     }
 
     function initializeUI() {
@@ -29,7 +27,7 @@
 
         $('.datepicker').datepicker({
             autoclose: true,
-            format: "yyyy-mm-dd",
+            format: "yyyy-mm-dd"
         });
     }
 
@@ -50,9 +48,15 @@
         var invoiceAmount = $field.data('invoice-amount');
         var invoiceDownPayment = $field.data('invoice-down-payment');
 
+        console.log(invoiceAmount);
+        console.log(invoiceDownPayment);
+
+        if (invoiceAmount && invoiceDownPayment) {
+            $('[name=loan_amount]').autoNumeric('set', parseFloat(invoiceAmount) - parseFloat(invoiceDownPayment));
+            $('[name=remaining_amount]').autoNumeric('set', parseFloat(invoiceAmount) - parseFloat(invoiceDownPayment));
+        }
+
         $('[name=loan_by_username]').val(username);
-        $('[name=loan_amount]').autoNumeric('set', parseFloat(invoiceAmount) - parseFloat(invoiceDownPayment));
-        $('[name=remaining_amount]').autoNumeric('set', parseFloat(invoiceAmount) - parseFloat(invoiceDownPayment));
     }
 
     function loadEstimations() {
