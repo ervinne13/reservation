@@ -23,6 +23,7 @@ Route::auth();
 Route::group(['middleware' => 'auth'], function () {
 
     Route::post('files/upload', 'FilesController@upload');
+    Route::post('files/remove', 'FilesController@remove');
 
     // <editor-fold defaultstate="collapsed" desc="Master Files">
     Route::get('users/datatable', 'UsersController@datatable');
@@ -31,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('clients/datatable', 'ClientsController@datatable');
     Route::resource('clients', 'ClientsController');
 
+    Route::get('items/{itemId}/files', 'ItemsController@itemFiles');
     Route::get('items/datatable', 'ItemsController@datatable');
     Route::get('items/status/{status}/datatable', 'ItemsController@datatableByStatus');
     Route::resource('items', 'ItemsController');

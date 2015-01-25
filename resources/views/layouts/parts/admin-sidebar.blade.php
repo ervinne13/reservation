@@ -71,7 +71,7 @@
                                             </span>
                                         </a>
                                     </li>-->
-            <li class="header">Accounting Links</li>
+<!--            <li class="header">Accounting Links</li>
             <li>
                 <a href="http://211.221.84.84/arc-nav/accounting">
                     <span><i class="fa fa-check text-aqua"></i> 
@@ -91,7 +91,7 @@
                         Importation Module
                     </span>
                 </a>
-            </li>
+            </li>-->
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

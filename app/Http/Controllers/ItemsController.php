@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\ItemImage;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
 use Yajra\Datatables\Datatables;
 
 class ItemsController extends Controller {
@@ -66,6 +68,20 @@ class ItemsController extends Controller {
         return view('pages.items.form', $viewData);
     }
 
+    public function itemFiles($itemId) {
+        $itemImages = ItemImage::where("item_id", $itemId)->get();
+        $files      = [];
+
+        foreach ($itemImages AS $image) {
+            array_push($files, [
+                "name" => $image->url,
+                "size" => File::size(public_path() . $image->url)
+            ]);
+        }
+
+        return $files;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -81,7 +97,24 @@ class ItemsController extends Controller {
         }
 
         try {
+
             $item->save();
+
+            if ($request->images) {
+
+                ItemImage::where("item_id", $item->id)->delete();
+
+                $imageUploads = [];
+
+                foreach ($request->images AS $image) {
+                    array_push($imageUploads, [
+                        "item_id" => $item->id,
+                        "url"     => "/uploads/{$image["server_filename"]}",
+                    ]);
+                }
+
+                ItemImage::insert($imageUploads);
+            }
         } catch (Exception $e) {
             return response($e->getMessage(), 500);
         }
@@ -131,7 +164,27 @@ class ItemsController extends Controller {
             }
 
             try {
+
                 $item->save();
+
+                if ($request->images) {
+
+                    ItemImage::where("item_id", $item->id)->delete();
+
+                    $imageUploads = [];
+echo json_encode($request->images);
+                    foreach ($request->images AS $image) {
+
+                        if ($image) {                            
+                            array_push($imageUploads, [
+                                "item_id" => $item->id,
+                                "url"     => "/uploads/{$image["server_filename"]}",
+                            ]);
+                        }
+                    }
+
+                    ItemImage::insert($imageUploads);
+                }
             } catch (Exception $e) {
                 return response($e->getMessage(), 500);
             }

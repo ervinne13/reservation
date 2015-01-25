@@ -6,7 +6,8 @@ var form_utilities = {
     validate: null,
     postValidate: false,
     errorHandler: null,
-    successHandler: null
+    successHandler: null,
+    preProcessData: null
 };
 form_utilities.formToJSON = function ($form) {
 
@@ -59,6 +60,10 @@ form_utilities.initializeDefaultProcessing = function ($form, $detailSGTable) {
 
             if ($detailSGTable) {
                 data.details = JSON.stringify($detailSGTable.getModifiedData());
+            }
+            
+            if (form_utilities.preProcessData) {
+                data = form_utilities.preProcessData(data);
             }
 
             try {

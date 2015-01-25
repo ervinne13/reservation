@@ -1,11 +1,26 @@
 @extends('layouts.lte-module')
 
+@section('css')
+@parent
+<link href="{{ asset("/vendor/dropzone/dropzone.css")}}" rel="stylesheet" type="text/css" />
+
+<style>
+    .dz-image img {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+@endsection
+
 @section('js')
 @parent
 <script type='text/javascript'>
     var id = '{{$item->id}}';
     var mode = '{{$mode}}';
 </script>
+
+<script src="{{ asset ("/vendor/dropzone/dropzone.js") }}" type="text/javascript"></script>
 
 <script src="{{ asset ("/js/image-utils.js") }}" type="text/javascript"></script>
 <script src="{{ asset ("/js/pages/items/form.js") }}" type="text/javascript"></script>
@@ -96,47 +111,25 @@
                                     <textarea name="description" class="form-control" placeholder="Other information about the product">{{ $item->description }}</textarea>
                                 </div>
                             </div>
-
-                            <div class="col-lg-12">
-                                <hr>
-                                <legend>Upload up to 4 images</legend>
-                            </div>
-
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    @if ($mode == "VIEW")                                    
-                                    <img src="{{ $item->image_url  ? URL::to('/') . $item->image_url : "" }}" width="250px" height="250px" id="image-preview">        
-                                    @else
-                                    <div id="image-preview-container" class="form-group">
-                                        <label for="input-student-image">Item Image</label>
-                                        <input type="file" id="input-item-image" name="image">
-                                        <p class="help-block">Ideal size is 250px x 250px</p>
-
-                                        <img src="{{ $item->image_url  ? URL::to('/') . $item->image_url : "" }}" width="250px" height="250px" id="image-preview">
-                                        <input type="hidden" name="image_url">
-                                    </div>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    @if ($mode == "VIEW")
-                                    <label for="input-student-image">Image 1</label>
-                                    <img src="{{ $item->image_url  ? URL::to('/') . $item->image_url : "" }}" width="250px" height="250px" id="image-preview">        
-                                    @else
-                                    <div id="image-preview-container" class="form-group">
-                                        <label for="input-student-image">Item Image</label>
-                                        <input type="file" id="input-item-image" name="image">
-                                        <p class="help-block">Ideal size is 250px x 250px</p>
-
-                                        <img src="{{ $item->image_url  ? URL::to('/') . $item->image_url : "" }}" width="250px" height="250px" id="image-preview">
-                                        <input type="hidden" name="image_url">
-                                    </div>
-                                    @endif
-                                </div>
-                            </div>
                         </div>
+
+                        <input id="images-container" type="text" name="images" style="display: none;">
+
                     </form>
+
+                    <div class="row">
+                        <!--<div class="col-lg-6">-->
+                        <div class="col-lg-12">
+                            <form id="dropzone" action="{{url("files/upload")}}" class="dropzone">
+                            </form>
+                        </div>
+                        <!--                        <div class="col-lg-6">
+                                                    <h4>Uploaded Images</h4>
+                        
+                                                    <img src="{{ $item->image_url  ? URL::to('/') . $item->image_url : "" }}" width="250px" height="250px" id="image-preview">
+                                                    
+                                                </div>-->
+                    </div>
 
                 </div><!-- ./box-body -->
                 <div class="box-footer">

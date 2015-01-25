@@ -30,7 +30,7 @@
         <div class="login-box-body">
 
             <h1 class="text-center">
-                {!! Config::get('app.name_html') !!} <i class="fa text-red fa-graduation-cap"></i>
+                {!! Config::get('app.name_html') !!}
             </h1>
 
             <h3>                    
