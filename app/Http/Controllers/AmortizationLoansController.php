@@ -171,8 +171,11 @@ class AmortizationLoansController extends Controller {
     protected function getDefaultViewData() {
         $viewData = parent::getDefaultViewData();
 
-        $viewData["openInvoices"] = SalesInvoice::Open()->get();
+        $viewData["openInvoices"] = SalesInvoice::With('reservation')->open()->get();
 
+        echo json_encode($viewData);
+        exit();
+        
         return $viewData;
     }
 

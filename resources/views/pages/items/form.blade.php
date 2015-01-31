@@ -71,21 +71,6 @@
                             </div>
                             <div class="col-lg-6 col-sm-12">
 
-                                <!--<div class="form-group">
-                                                                    <label>Engine Type</label>
-                                                                    <input type="text" name="engine_type" class="form-control" value="{{ $item->engine_type }}">
-                                                                </div>
-                                
-                                                                <div class="form-group">
-                                                                    <label>Engine Stroke</label>
-                                                                    <input type="text" name="engine_stroke" class="form-control" value="{{ $item->engine_stroke }}">
-                                                                </div>
-                                
-                                                                <div class="form-group">
-                                                                    <label>Oil Capacity</label>
-                                                                    <input type="text" name="oil_capacity" class="form-control" value="{{ $item->oil_capacity }}">
-                                                                </div>-->
-
                                 <div class="form-group">
                                     <label>Category</label>
                                     <select class="form-control" name="category">
@@ -97,8 +82,23 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>Supplier</label>
+                                    <select name="supplier_id" class="form-control">
+                                        @foreach($suppliers AS $supplier)
+                                        <?php $selected = $item->supplier_id == $supplier->id ? "selected" : "" ?>
+                                        <option {{$selected}} value="{{$supplier->id}}">{{$supplier->name}}</option>>
+                                        @endforeach
+                                    </select>                                    
+                                </div>
+
+                                <div class="form-group">
                                     <label>Fuel Type</label>
-                                    <input type="text" name="fuel_type" class="form-control" value="{{ $item->fuel_type }}">
+                                    <select name="fuel_type_id" class="form-control">
+                                        @foreach($fuelTypes AS $fuelType)
+                                        <?php $selected = $item->fuel_type_id == $fuelType->id ? "selected" : "" ?>
+                                        <option {{$selected}} value="{{$fuelType->id}}">{{$fuelType->name}}</option>>
+                                        @endforeach
+                                    </select>                                    
                                 </div>
 
                                 <div class="form-group">

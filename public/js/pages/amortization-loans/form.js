@@ -44,6 +44,7 @@
 
     function loadReferenceInvoiceRelatedData() {
         var $field = $('[name=reference_invoice_number] option:selected');
+        var terms = $field.data('terms');
         var username = $field.data('issued-to-username');
         var invoiceAmount = $field.data('invoice-amount');
         var invoiceDownPayment = $field.data('invoice-down-payment');
@@ -54,6 +55,10 @@
         if (invoiceAmount && invoiceDownPayment) {
             $('[name=loan_amount]').autoNumeric('set', parseFloat(invoiceAmount) - parseFloat(invoiceDownPayment));
             $('[name=remaining_amount]').autoNumeric('set', parseFloat(invoiceAmount) - parseFloat(invoiceDownPayment));
+        }
+
+        if (terms) {
+            $('[name=months_to_pay]').val(terms);
         }
 
         $('[name=loan_by_username]').val(username);

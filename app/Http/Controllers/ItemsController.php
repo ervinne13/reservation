@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FuelType;
 use App\Models\Item;
 use App\Models\ItemImage;
+use App\Models\Supplier;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -40,7 +42,12 @@ class ItemsController extends Controller {
     }
 
     public function getAllJSON() {
-        $items = Item::with('images')->get()->toArray();
+        $items = Item::with('images')
+                ->with('supplier')
+                ->with('fuelType')
+                ->get()
+                ->toArray();
+
         return array_map(function($item) {
             //  backwards compatibility with mobile            
             $item["image_url"] = "";
@@ -60,7 +67,7 @@ class ItemsController extends Controller {
      */
     public function create() {
 
-        $viewData               = $this->getDefaultViewData();
+        $viewData               = $this->getDefaultFormViewData();
         $viewData["categories"] = $this->itemCategories;
         $viewData["item"]       = new Item();
         $viewData["mode"]       = "ADD";
@@ -137,7 +144,7 @@ class ItemsController extends Controller {
      * @return Response
      */
     public function edit($id) {
-        $viewData               = $this->getDefaultViewData();
+        $viewData               = $this->getDefaultFormViewData();
         $viewData["categories"] = $this->itemCategories;
         $viewData["item"]       = Item::find($id);
         $viewData["mode"]       = "EDIT";
@@ -172,10 +179,10 @@ class ItemsController extends Controller {
                     ItemImage::where("item_id", $item->id)->delete();
 
                     $imageUploads = [];
-echo json_encode($request->images);
+                    echo json_encode($request->images);
                     foreach ($request->images AS $image) {
 
-                        if ($image) {                            
+                        if ($image) {
                             array_push($imageUploads, [
                                 "item_id" => $item->id,
                                 "url"     => "/uploads/{$image["server_filename"]}",
@@ -200,7 +207,20 @@ echo json_encode($request->images);
      * @return Response
      */
     public function destroy($id) {
-        //
+        try {
+            Item::find($id)->delete();
+        } catch (\Exception $e) {
+            return response("Failed to delete item. It may already be used in an invoice. Such items cannot be deleted anymore for auditing purposes", 500);
+        }
+    }
+
+    protected function getDefaultFormViewData() {
+        $viewData = $this->getDefaultViewData();
+
+        $viewData["fuelTypes"] = FuelType::all();
+        $viewData["suppliers"] = Supplier::all();
+
+        return $viewData;
     }
 
 }

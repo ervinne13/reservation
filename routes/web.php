@@ -32,6 +32,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('clients/datatable', 'ClientsController@datatable');
     Route::resource('clients', 'ClientsController');
 
+    Route::get('suppliers/datatable', 'SuppliersController@datatable');
+    Route::resource('suppliers', 'SuppliersController');
+
+    Route::get('fuel-types/datatable', 'FuelTypesController@datatable');
+    Route::resource('fuel-types', 'FuelTypesController');
+
     Route::get('items/{itemId}/files', 'ItemsController@itemFiles');
     Route::get('items/datatable', 'ItemsController@datatable');
     Route::get('items/status/{status}/datatable', 'ItemsController@datatableByStatus');

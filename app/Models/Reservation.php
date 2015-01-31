@@ -12,6 +12,9 @@ class Reservation extends Model {
         "sales_invoice_no",
         "item_id_to_reserve",
         "reservation_amount",
+        "qty_to_reserve",
+        "terms",
+        "preferred_payment",
         "status"
     ];
 
@@ -43,7 +46,7 @@ class Reservation extends Model {
     public function createSI() {
 
         $salesInvoice                     = SalesInvoice::make();
-        $salesInvoice->down_payment       = $this->reservation_amount;
+        $salesInvoice->down_payment       = $this->reservation_amount * $this->qty_to_reserve;
         $salesInvoice->issued_to_username = $this->reserved_by_username;
         $salesInvoice->issued_to_name     = $this->reservedBy->full_name;
         $salesInvoice->issued_to_address  = $this->reservedBy->address;
@@ -54,12 +57,12 @@ class Reservation extends Model {
         $salesInvoiceDetail->item_model      = $this->item->model;
         $salesInvoiceDetail->item_name       = $this->item->name;
         $salesInvoiceDetail->item_cost       = $this->item->cost;
-        $salesInvoiceDetail->item_qty        = 1;
+        $salesInvoiceDetail->item_qty        = $this->qty_to_reserve;
         $salesInvoiceDetail->sub_total       = $this->item->cost;
 
         unset($salesInvoice->details);
 
-        $salesInvoice->total_amount = $this->item->cost;
+        $salesInvoice->total_amount = $this->item->cost * $this->qty_to_reserve;
         $salesInvoice->save();
 
         $salesInvoiceDetail->save();
@@ -71,7 +74,8 @@ class Reservation extends Model {
 
         $salesInvoice->details = [$salesInvoiceDetail];
 
-        $this->status = "With S.I.";
+        $this->sales_invoice_no = $salesInvoice->document_number;
+        $this->status           = "With S.I.";
         $this->save();
 
         return $salesInvoice;

@@ -2,7 +2,8 @@
 
 @section('js')
 @parent
-<script src="{{ asset ("/js/pages/reservations/index.js") }}" type="text/javascript"></script>
+
+<script src="{{ asset ("/js/pages/suppliers/index.js") }}" type="text/javascript"></script>
 @endsection
 
 @section('content')
@@ -10,7 +11,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Client Reservations
+        Suppliers
     </h1>
 </section>
 
@@ -25,14 +26,13 @@
                             <table id="datatable" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th></th>
-                                        <th>Reserved By</th>
-                                        <th>Reserved By Contact</th>
-                                        <th>Status</th>
-                                        <th>Item To Reserve</th>
-                                        <th>Qty To Reserve</th>
-                                        <th>Reservation Amount (Per Item)</th>
-                                        <th>Total Amount</th>
+                                        <th style="min-width: 40px">
+                                            <a class="action-create-entry" href="/suppliers/create">
+                                                <i class="fa fa-plus"></i>
+                                            </a>
+                                        </th>                                        
+                                        <th>Id</th>                                        
+                                        <th>Name</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>

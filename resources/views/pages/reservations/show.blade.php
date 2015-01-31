@@ -3,7 +3,13 @@
 @section('js')
 <script type='text/javascript'>
     var id = '{{$reservation->id}}';
+    var reservation = JSON.parse('{!! $reservation !!}');
+    var item = JSON.parse('{!! $reservation->item !!}');
 </script>
+
+<script src="{{ asset ("/vendor/momentjs/moment.js") }}" type="text/javascript"></script>
+
+<script src="{{ asset ("/js/sms-utility.js") }}" type="text/javascript"></script>
 <script src="{{ asset ("/js/pages/reservations/form.js") }}" type="text/javascript"></script>
 @endsection
 
@@ -32,12 +38,12 @@
 
                                 <div class="form-group">
                                     <label>Contact Number 1</label>
-                                    <input type="text" disabled class="form-control " value="{{ $reservation->reservedBy->contact_number_1 }}">
+                                    <input type="text" name="contact_number_1" readonly class="form-control " value="{{ $reservation->reservedBy->contact_number_1 }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Contact Number 2</label>
-                                    <input type="text" disabled class="form-control " value="{{ $reservation->reservedBy->contact_number_2 }}">
+                                    <input type="text" name="contact_number_2" readonly class="form-control " value="{{ $reservation->reservedBy->contact_number_2 }}">
                                 </div>
 
                                 <div class="form-group">
@@ -54,17 +60,37 @@
                             <div class="col-lg-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Item To Reserve</label>
-                                    <input type="text" disabled class="form-control " value="{{ $reservation->item->name }}">
+                                    <input type="text" name="item_name" readonly class="form-control " value="{{ $reservation->item->name }}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Total Cost</label>
-                                    <input type="text" disabled class="form-control " value="{{ $reservation->item->cost }}">
+                                    <label>Total Cost (Per Unit)</label>
+                                    <input type="text" disabled class="form-control " value="{{ number_format($reservation->item->cost, 2) }}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Reservation Amount To Pay</label>
-                                    <input type="text" disabled class="form-control " value="{{ $reservation->reservation_amount }}">
+                                    <label>Reservation Amount To Pay (Per Unit)</label>
+                                    <input type="text" disabled class="form-control " value="{{ number_format($reservation->reservation_amount, 2) }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Qty to Reserve</label>
+                                    <input type="text" disabled class="form-control " value="{{ $reservation->qty_to_reserve }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Total Reservation Amount</label>
+                                    <input type="text" disabled class="form-control " value="{{ number_format($reservation->reservation_amount * $reservation->qty_to_reserve, 2) }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Terms (Months to Pay)</label>
+                                    <input type="text" disabled class="form-control " value="{{ $reservation->terms }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Payment Preference</label>
+                                    <input type="text" disabled name="preferred_payment" class="form-control required" value="{{ $reservation->preferred_payment }}">
                                 </div>
 
                                 <div class="form-group">

@@ -51,6 +51,7 @@
                                         <option 
                                             value="{{$invoice->document_number}}" 
                                             {{$selected}} 
+                                            data-terms="{{$invoice->reservation ? $invoice->reservation->terms : NULL}}"
                                             data-issued-to-username="{{$invoice->issued_to_username}}"
                                             data-invoice-amount="{{$invoice->total_amount}}"
                                             data-invoice-down-payment="{{$invoice->down_payment}}"
@@ -79,8 +80,8 @@
                                 <div class="form-group">
                                     <label>Number of Months to Pay</label>
                                     <input type="number" required name="months_to_pay" class="form-control required" value="{{ $aml->months_to_pay }}" placeholder="xx">
-                                </div>
-
+                                </div>                               
+                                
                             </div>
                             <div class="col-lg-6 col-sm-12">
 

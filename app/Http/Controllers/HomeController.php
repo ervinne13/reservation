@@ -22,6 +22,9 @@ class HomeController extends Controller {
 
             $viewData["clientReservations"] = Reservation::getReservationsByClient();
 
+            $viewData["currentYear"]  = date('Y');
+            $viewData["currentMonth"] = date("F");
+
             return view('pages.home.index', $viewData);
         } else {
             return view('welcome');

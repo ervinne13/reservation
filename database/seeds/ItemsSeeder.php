@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\FuelType;
 use App\Models\Item;
 use App\Models\ItemImage;
+use App\Models\Supplier;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,8 +17,31 @@ class ItemsSeeder extends Seeder {
     public function run() {
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table("fuel_types")->truncate();
+        DB::table("suppliers")->truncate();
         DB::table("items")->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        $suppliers = [
+            ["id" => 1, "name" => "Yamaha"],
+            ["id" => 2, "name" => "Suzuki"],
+            ["id" => 3, "name" => "Honda"],
+            ["id" => 4, "name" => "Rusi"],
+            ["id" => 5, "name" => "Racal"],
+            ["id" => 6, "name" => "Motorstar"],
+            ["id" => 7, "name" => "Kawasaki"]
+        ];
+
+        Supplier::insert($suppliers);
+
+        $fuelTypes = [
+            ["id" => 1, "name" => "Unleaded"],
+            ["id" => 2, "name" => "Gasoline"],
+            ["id" => 3, "name" => "LPG"],
+            ["id" => 4, "name" => "Diesel"],
+        ];
+
+        FuelType::insert($fuelTypes);
 
         $items = [
             [
@@ -26,6 +51,8 @@ class ItemsSeeder extends Seeder {
                 "name"             => "Racal JR125",
                 "cost"             => "60000",
                 "reservation_cost" => "3000",
+                "supplier_id"      => 5,
+                "fuel_type_id"     => 4,
                 "stock"            => 3,
                 "oil_capacity"     => "0.9L",
                 "engine_type"      => "1P52QMI",
@@ -38,6 +65,8 @@ class ItemsSeeder extends Seeder {
                 "name"             => "Racal MD100",
                 "cost"             => "40000",
                 "reservation_cost" => "2000",
+                "supplier_id"      => 5,
+                "fuel_type_id"     => 4,
                 "stock"            => 3,
                 "oil_capacity"     => null,
                 "engine_type"      => null,
@@ -50,10 +79,12 @@ class ItemsSeeder extends Seeder {
                 "name"             => "Racal MD110",
                 "cost"             => "50000",
                 "reservation_cost" => "2500",
-                "stock"            => 3,
-                "oil_capacity"     => null,
-                "engine_type"      => null,
-                "description"      => "Demo item only. DO NOT USE IN PRODUCTION!"
+                "supplier_id"      => 5,
+                "fuel_type_id"     => 4,
+                "stock"        => 3,
+                "oil_capacity" => null,
+                "engine_type"  => null,
+                "description"  => "Demo item only. DO NOT USE IN PRODUCTION!"
             ],
             [
                 "id"               => 4,
@@ -62,6 +93,8 @@ class ItemsSeeder extends Seeder {
                 "name"             => "Racal Speed X125",
                 "cost"             => "60000",
                 "reservation_cost" => "3000",
+                "supplier_id"      => 5,
+                "fuel_type_id"     => 4,
                 "stock"            => 3,
                 "oil_capacity"     => null,
                 "engine_type"      => null,
@@ -74,6 +107,8 @@ class ItemsSeeder extends Seeder {
                 "name"             => "Racal TS125",
                 "cost"             => "60000",
                 "reservation_cost" => "3000",
+                "supplier_id"      => 5,
+                "fuel_type_id"     => 4,
                 "stock"            => 3,
                 "oil_capacity"     => null,
                 "engine_type"      => null,

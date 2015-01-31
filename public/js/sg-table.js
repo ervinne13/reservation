@@ -13,8 +13,7 @@
     //  Events
     var EVENT_ON_OPEN_ROW = "openRow";
 
-    //  Templates
-    var dropdownRowTemplate;
+    //  Templates    
     var dropdownRowCreateActionsTemplate;
     var dropdownRowEditActionsTemplate;
 
@@ -358,7 +357,7 @@
 
         this.openRowForCreate = function () {
             _this.closeOpenRow();
-            $(_this.selector + ' .action-add-entry').closest('tr').after(createOpenRow(0, 'create'));
+            $(_this.selector + ' .action-add-entry').closest('tr').after(_this.createOpenRow(0, 'create'));
             onRowOpened(_this, 0);
         };
 
@@ -371,11 +370,30 @@
             if (!isActive) {
                 $(selector).addClass('active');
                 $(selector).html(closeRowActionIcon);
-                $(selector).closest('tr').after(createOpenRow(id, 'edit'));
+                $(selector).closest('tr').after(_this.createOpenRow(id, 'edit'));
                 assignValuesToDropdownRowFields(_this, _this.getRowData(id));
                 onRowOpened(_this, id);
             }
         };
+
+        this.createOpenRow = function (id, mode) {
+            var dropdownRow = this.dropdownRowTemplate({id: id, mode: mode});
+            var actions = "";
+
+            if (mode === 'edit') {
+                actions = dropdownRowEditActionsTemplate({id: id});
+            } else if (mode === 'create') {
+                actions = dropdownRowCreateActionsTemplate({id: id});
+            }
+
+            if (actions) {
+                dropdownRow += actions;
+            }
+
+            var dropdownRowWrapped = '<tr id="dropdown-row-' + id + '" data-id="' + id + '" data-mode="' + mode + '" class="dropdown-row"><td style="display: table-cell" colspan="' + columnCount + '">' + dropdownRow + '<div class="clearfix"></div></td></tr>';
+
+            return dropdownRowWrapped;
+        }
 
         //  </editor-fold>
 
@@ -437,7 +455,7 @@
         //  templates
         var templateHtml = $(sgTable.sgOptions.dropdownRowTemplate).html();
         if (templateHtml) {
-            dropdownRowTemplate = _.template(templateHtml);
+            sgTable.dropdownRowTemplate = _.template(templateHtml);
         } else {
             throw new Error("dropdownRowTemplate can't be blank!");
         }
@@ -573,25 +591,6 @@
 
         rowHtml += "</tr></thead>";
         $(sgTable.selector).html(rowHtml);
-    }
-
-    function createOpenRow(id, mode) {
-        var dropdownRow = dropdownRowTemplate({id: id, mode: mode});
-        var actions = "";
-
-        if (mode === 'edit') {
-            actions = dropdownRowEditActionsTemplate({id: id});
-        } else if (mode === 'create') {
-            actions = dropdownRowCreateActionsTemplate({id: id});
-        }
-
-        if (actions) {
-            dropdownRow += actions;
-        }
-
-        var dropdownRowWrapped = '<tr id="dropdown-row-' + id + '" data-id="' + id + '" data-mode="' + mode + '" class="dropdown-row"><td style="display: table-cell" colspan="' + columnCount + '">' + dropdownRow + '<div class="clearfix"></div></td></tr>';
-
-        return dropdownRowWrapped;
     }
 
     function addCreateColumn(el) {

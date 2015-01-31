@@ -58,9 +58,23 @@
             </li>
             <li class="header">Master List</li>
             <li>
+                <a href="/suppliers">
+                    <span><i class="fa fa-file text-blue"></i> 
+                        Suppliers
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/fuel-types">
+                    <span><i class="fa fa-file text-blue"></i> 
+                        Fuel Types
+                    </span>
+                </a>
+            </li>
+            <li>
                 <a href="/items">
                     <span><i class="fa fa-file text-blue"></i> 
-                        Items
+                        Inventory
                     </span>
                 </a>
             </li>
@@ -71,27 +85,27 @@
                                             </span>
                                         </a>
                                     </li>-->
-<!--            <li class="header">Accounting Links</li>
-            <li>
-                <a href="http://211.221.84.84/arc-nav/accounting">
-                    <span><i class="fa fa-check text-aqua"></i> 
-                        Accounting Module
-                    </span>
-                </a>
-            <li>
-                <a href="http://211.221.84.84/arc-nav/batch-post">
-                    <span><i class="fa fa-file-o text-aqua"></i> 
-                        Batch Posting Module
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="http://211.221.84.84/arc-nav/importation">
-                    <span><i class="fa fa-upload text-aqua"></i> 
-                        Importation Module
-                    </span>
-                </a>
-            </li>-->
+            <!--            <li class="header">Accounting Links</li>
+                        <li>
+                            <a href="http://211.221.84.84/arc-nav/accounting">
+                                <span><i class="fa fa-check text-aqua"></i> 
+                                    Accounting Module
+                                </span>
+                            </a>
+                        <li>
+                            <a href="http://211.221.84.84/arc-nav/batch-post">
+                                <span><i class="fa fa-file-o text-aqua"></i> 
+                                    Batch Posting Module
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://211.221.84.84/arc-nav/importation">
+                                <span><i class="fa fa-upload text-aqua"></i> 
+                                    Importation Module
+                                </span>
+                            </a>
+                        </li>-->
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

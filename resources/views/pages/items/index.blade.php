@@ -33,7 +33,7 @@
                             <table id="datatable" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>
+                                        <th style="min-width: 40px">
                                             <a class="action-create-entry" href="/items/create">
                                                 <i class="fa fa-plus"></i>
                                             </a>

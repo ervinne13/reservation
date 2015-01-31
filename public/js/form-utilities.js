@@ -9,6 +9,7 @@ var form_utilities = {
     successHandler: null,
     preProcessData: null
 };
+
 form_utilities.formToJSON = function ($form) {
 
     var json = {};
@@ -61,7 +62,7 @@ form_utilities.initializeDefaultProcessing = function ($form, $detailSGTable) {
             if ($detailSGTable) {
                 data.details = JSON.stringify($detailSGTable.getModifiedData());
             }
-            
+
             if (form_utilities.preProcessData) {
                 data = form_utilities.preProcessData(data);
             }

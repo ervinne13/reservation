@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Item extends Model {
 
     protected $fillable = [
-        "category", "model", "name", "cost", "reservation_cost", "stock", "description", "image_url"
+        "category", "model", "name", "cost", "reservation_cost", "supplier_id", "fuel_type_id", "stock", "description", "image_url"
     ];
 
     public static function getSummaryReports() {
@@ -71,6 +71,14 @@ class Item extends Model {
 
     public function images() {
         return $this->hasMany(ItemImage::class);
+    }
+
+    public function supplier() {
+        return $this->belongsTo(Supplier::class);
+    }
+
+    public function fuelType() {
+        return $this->belongsTo(FuelType::class);
     }
 
 }

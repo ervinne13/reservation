@@ -24,6 +24,8 @@
                 {data: 'reserved_by.contact_number_1', name: 'reservedBy.contact_number_1'},
                 {data: 'status'},
                 {data: 'item.name'},
+                {data: 'qty_to_reserve'},
+                {data: 'reservation_amount'},
                 {data: 'reservation_amount'}
             ],
             columnDefs: [
@@ -40,8 +42,18 @@
                     }
                 },
                 {
-                    targets: 5,
+                    targets: 6,
                     render: datatable_utilities.formatCurrency
+                }
+                ,
+                {
+                    targets: 7,
+                    render: function (reservationAmount, type, rowData) {
+
+                        var amount = reservationAmount * rowData.qty_to_reserve;
+
+                        return datatable_utilities.formatCurrency(amount);
+                    }
                 }
             ]
         });

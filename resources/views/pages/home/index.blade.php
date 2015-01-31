@@ -7,17 +7,14 @@
 @include('templates.default-dropdown-table-actions')
 
 <script type="text/javascript">
-    var phoneNumbers = {!! $phoneNumbers !!}
-    ;
-            var bankAccounts = {!! $bankAccounts !!}
-    ;
+    var phoneNumbers = {!! $phoneNumbers !!};
+    var bankAccounts = {!! $bankAccounts !!};
 </script>
 
 <script src="{{ asset ("/vendor/underscore/underscore.js") }}" type="text/javascript"></script>
 <script src="{{ asset ("/vendor/jquery/jquery.validate.min.js") }}" type="text/javascript"></script>
 <script src="{{ asset ("/js/form-utilities.js") }}" type="text/javascript"></script>
 <script src="{{ asset ("/js/sg-table.js") }}" type="text/javascript"></script>
-<script src="{{ asset ("/js/sg-table-row-utilities.js") }}" type="text/javascript"></script>
 <script src="{{ asset ("/js/sg-table-row-utilities.js") }}" type="text/javascript"></script>
 
 <script src="{{ asset ("/js/pages/dashboard.js") }}" type="text/javascript"></script>
@@ -102,16 +99,16 @@
                     <table class="table table-striped" >
                         <tbody>
                             <tr>                                
-                                <td>Total Sales & Collections For 2016</td>
-                                <td>P<span id="current-year-sales">{{number_format($salesSummary["total_sales"], 2)}}</span></td>
+                                <td>Total Sales & Collections For {{$currentYear}}</td>
+                                <td class="text-right">P<span id="current-year-sales">{{number_format($salesSummary["total_sales"], 2)}}</span></td>
                             </tr>
                             <tr>                                
-                                <td>Total <b>New</b> Sales For <span class="current-month">December</span></td>
-                                <td>P<span id="current-month-sales">{{number_format($salesSummary["month_sales"], 2)}}</span></td>
+                                <td>Total <b>New</b> Sales For <span class="current-month">{{$currentMonth}}</span></td>
+                                <td class="text-right">P<span id="current-month-sales">{{number_format($salesSummary["month_sales"], 2)}}</span></td>
                             </tr>
                             <tr>                                
-                                <td>Total Collections For <span class="current-month">December</span></td>
-                                <td>P<span id="current-month-collections">{{number_format($salesSummary["total_collections"], 2)}}</span></td>
+                                <td>Total Collections For <span class="current-month">{{$currentMonth}}</span></td>
+                                <td class="text-right">P<span id="current-month-collections">{{number_format($salesSummary["total_collections"], 2)}}</span></td>
                             </tr>
                         </tbody>
                     </table>

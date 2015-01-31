@@ -72,6 +72,10 @@ class SalesInvoice extends Model {
         return $this->belongsTo(User::class, 'issued_by_username');
     }
 
+    function reservation() {
+        return $this->hasOne(Reservation::class, 'sales_invoice_no');
+    }
+
     function scopeOpen($query) {
         return $query->where('status', 'Open');
     }

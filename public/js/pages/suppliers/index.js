@@ -11,9 +11,9 @@
 
     function initializeTable() {
 
-        var url = "/items/datatable";
+        var url = "/suppliers/datatable";
         if (status) {
-            url = "/items/status/" + status + "/datatable";
+            url = "/suppliers/status/" + status + "/datatable";
         }
 
         $datatable = $('#datatable').DataTable({
@@ -28,13 +28,8 @@
             order: [1, "desc"],
             columns: [
                 {data: 'id'},
-                {data: 'model'},
-                {data: 'name'},
-                {data: 'stock'},
-                {data: 'cost'},
-                {data: 'stock'},
-                {data: 'stock'},
-                {data: 'description'}
+                {data: 'id'},
+                {data: 'name'}
             ],
             columnDefs: [
                 {bSearchable: false, aTargets: [0]},
@@ -48,50 +43,6 @@
                             datatable_utilities.getDefaultDeleteAction(id)
                         ];
                         return datatable_utilities.getInlineActionsView(actions);
-                    }
-                },
-                {
-                    targets: 3,
-                    render: function (stock, type, rowData, meta) {
-
-                        if (stock >= 3) {
-                            return '<label class="text-success">In Stock</label>';
-                        } else if (stock < 3 && stock > 0) {
-                            return '<label class="text-warning">Critical Stock</label>';
-                        } else if (stock == 0) {
-                            return '<label class="text-danger">Out of Stock</label>';
-                        } else if (stock < 0) {
-                            return '<label class="text-danger">HAS COMMITTED STOCKS</label>';
-                        }
-
-                    }
-                },
-                {
-                    targets: 4,
-                    render: datatable_utilities.formatCurrency
-                },
-                {
-                    targets: 5,
-                    render: function (stock, type, rowData, meta) {
-
-                        if (stock < 0) {
-                            return 0;
-                        } else {
-                            return stock;
-                        }
-
-                    }
-                },
-                {
-                    targets: 6,
-                    render: function (stock, type, rowData, meta) {
-
-                        if (stock > 0) {
-                            return 0;
-                        } else {
-                            return stock * -1;
-                        }
-
                     }
                 }
             ]
@@ -110,7 +61,7 @@
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete item"
+                confirmButtonText: "Yes, delete supplier"
             }).then(function () {
                 deleteItem(id);
             });
@@ -118,9 +69,9 @@
 
     }
 
-    function deleteItem(itemId) {        
+    function deleteItem(itemId) {
 
-        var url = baseURL + "/items/" + itemId;
+        var url = baseURL + "/suppliers/" + itemId;
 
         $.ajax({
             url: url,
