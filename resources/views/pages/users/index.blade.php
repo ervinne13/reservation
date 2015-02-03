@@ -2,6 +2,7 @@
 
 @section('js')
 @parent
+<script src="{{ asset ("/js/form-utilities.js") }}" type="text/javascript"></script>
 <script src="{{ asset ("/js/pages/users/index.js") }}" type="text/javascript"></script>
 @endsection
 

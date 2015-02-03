@@ -131,7 +131,11 @@ class ClientsController extends Controller {
      * @param  int  $iResponseate\Http\Response
      */
     public function destroy($id) {
-        //
+        try {
+            Client::find($id)->delete();
+        } catch (\Exception $e) {
+            return response("Failed to delete client. It may already be used in other transactions. You may only delete clients that does not have any transaciton yet.", 500);
+        }
     }
 
 }

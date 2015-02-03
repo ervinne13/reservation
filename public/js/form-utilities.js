@@ -40,6 +40,39 @@ form_utilities.setFieldError = function (fieldName, errorMessage) {
     $('[name=' + fieldName + ']').parent().append(errorLabelHtml);
 };
 
+form_utilities.initializeDefaultDeleteInViewAction = function ($datatable, datatableSelector, moduleUrl, successMessage) {
+
+    $(datatableSelector).on('click', '.action-delete', function (e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+
+        swal({
+            title: "Are you sure?",
+            text: "This record will be permanently deleted",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete record"
+        }).then(function () {
+            var url = moduleUrl + "/" + id;
+
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                success: function (response) {
+                    console.log(response);
+                    $datatable.ajax.reload();
+                    swal("SUCCESS", successMessage, 'success');
+                },
+                error: function (response) {
+                    swal("Error", response.responseText, 'error');
+                }
+            });
+        });
+    });
+
+};
+
 form_utilities.initializeDefaultProcessing = function ($form, $detailSGTable) {
 
     $('.action-button').click(function () {

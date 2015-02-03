@@ -75,7 +75,7 @@ class Reservation extends Model {
         $salesInvoice->details = [$salesInvoiceDetail];
 
         $this->sales_invoice_no = $salesInvoice->document_number;
-        $this->status           = "With S.I.";
+        $this->status           = "With Sales Invoice";
         $this->save();
 
         return $salesInvoice;

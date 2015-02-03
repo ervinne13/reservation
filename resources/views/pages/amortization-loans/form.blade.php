@@ -69,12 +69,12 @@
 
                                 <div class="form-group">
                                     <label>Loan Amount</label>
-                                    <input type="text" required readonly name="loan_amount" class="form-control required autonumeric" value="{{ $aml->loan_amount }}" placeholder="xx,xxx.xx">
+                                    <input type="text" required readonly name="loan_amount" class="form-control required autonumeric" value="{{ $aml->loan_amount }}" placeholder="00,000.00">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Remaining Amount</label>
-                                    <input type="text" required readonly name="remaining_amount" class="form-control required autonumeric" value="{{ $aml->remaining_amount }}" placeholder="xx,xxx.xx">
+                                    <input type="text" required readonly name="remaining_amount" class="form-control required autonumeric" value="{{ $aml->remaining_amount }}" placeholder="00,000.00">
                                 </div>
 
                                 <div class="form-group">
@@ -105,12 +105,12 @@
 
                                 <div class="form-group">
                                     <label>Estimated Monthly Principal</label>
-                                    <input type="text" required readonly name="estimated_monthly_principal" class="form-control required autonumeric" value="{{ $aml->estimated_monthly_principal }}" placeholder="xx,xxx.xx">
+                                    <input type="text" required readonly name="estimated_monthly_principal" class="form-control required autonumeric" value="{{ $aml->estimated_monthly_principal }}" placeholder="00,000.00">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Estimated Monthly Interest</label>
-                                    <input type="text" required readonly name="estimated_monthly_interest" class="form-control required autonumeric" value="{{ $aml->estimated_monthly_interest }}" placeholder="xx,xxx.xx">
+                                    <input type="text" required readonly name="estimated_monthly_interest" class="form-control required autonumeric" value="{{ $aml->estimated_monthly_interest }}" placeholder="00,000.00">
                                 </div>
 
                                 <div class="form-group">

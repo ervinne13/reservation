@@ -3,12 +3,15 @@
 
 (function () {
 
-    var datatable;
+    var $datatable;
+
     $(document).ready(function () {
         initializeTable();
+        initializeEvents();
     });
+
     function initializeTable() {
-        datatable = $('#datatable').DataTable({
+        $datatable = $('#datatable').DataTable({
             processing: true,
             serverSide: true,
             search: {
@@ -35,7 +38,8 @@
                     targets: 0,
                     render: function (id, type, rowData, meta) {
                         var actions = [
-                            datatable_utilities.getDefaultViewAction(id)
+                            datatable_utilities.getDefaultViewAction(id),
+                            datatable_utilities.getDefaultDeleteAction(id)
                         ];
 
                         return datatable_utilities.getInlineActionsView(actions);
@@ -57,6 +61,10 @@
                 }
             ]
         });
+    }
+
+    function initializeEvents() {
+        form_utilities.initializeDefaultDeleteInViewAction($datatable, "#datatable", baseURL + "/reservations", "Reservation successfullly deleted");
     }
 
 })();

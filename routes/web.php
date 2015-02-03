@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
     // <editor-fold defaultstate="collapsed" desc="Modules">
 
     Route::get('sales-invoices/datatable', 'SalesInvoicesController@datatable');
+    Route::get('sales-invoices/{id}/print', 'SalesInvoicesController@printDocument');
     Route::resource('sales-invoices', 'SalesInvoicesController');
     Route::delete('sales-invoice-details/{id}', 'SalesInvoicesController@destroyDetail');
 

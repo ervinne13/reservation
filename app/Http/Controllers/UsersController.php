@@ -130,7 +130,11 @@ class UsersController extends Controller {
      * @return Response
      */
     public function destroy($id) {
-        //
+        try {
+            User::find($id)->delete();
+        } catch (\Exception $e) {
+            return response("Failed to delete user. It may already be used in other transactions. You may only delete unused users.", 500);
+        }
     }
 
     /**

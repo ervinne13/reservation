@@ -59,13 +59,13 @@
 
                                 <div class="form-group">
                                     <label>Cost</label>
-                                    <input type="text" required name="cost" class="form-control required" value="{{ $item->cost }}" placeholder="xx,xxx.xx">
+                                    <input type="text" required name="cost" class="form-control required" value="{{ $item->cost }}" placeholder="00,000.00">
                                 </div>
 
                                 <div class="form-group">
                                     <!--<label>Reservation Cost</label>-->
                                     <label>Downpayment</label>
-                                    <input type="text" required name="reservation_cost" class="form-control required" value="{{ $item->reservation_cost }}" placeholder="xx,xxx.xx">
+                                    <input type="text" required name="reservation_cost" class="form-control required" value="{{ $item->reservation_cost }}" placeholder="00,000.00">
                                 </div>
 
                             </div>

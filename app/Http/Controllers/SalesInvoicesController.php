@@ -97,6 +97,13 @@ class SalesInvoicesController extends Controller {
         return view('pages.sales-invoices.show', $viewData);
     }
 
+    public function printDocument($id) {
+        $viewData                 = $this->getDefaultViewData();
+        $viewData["salesInvoice"] = SalesInvoice::find($id);
+
+        return view('pages.sales-invoices.print-document', $viewData);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

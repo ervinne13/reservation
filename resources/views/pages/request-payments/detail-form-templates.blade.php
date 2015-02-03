@@ -17,7 +17,7 @@
             </div>
             <div class="form-group">
                 <label>Payment Amount:</label>
-                <input type="text" required name="amount" class="form-control required" placeholder="xx,xxx.xx">
+                <input type="text" required name="amount" class="form-control required" placeholder="00,000.00">
             </div>           
 
         </div>

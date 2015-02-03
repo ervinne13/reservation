@@ -11,7 +11,7 @@ use Yajra\Datatables\Datatables;
 class ReservationsController extends Controller {
 
     protected $reseravationStatusList = [
-        "Open",
+        "Pending",
         "Rejected",
         "Validated",
 //        "With S.I."   //  With S.I. Cannot be manually selected
@@ -72,6 +72,7 @@ class ReservationsController extends Controller {
 
         try {
             $reservation = new Reservation($request->toArray());
+            $reservation->status = "Pending";
             $reservation->save();
 
             return $reservation;
@@ -155,7 +156,11 @@ class ReservationsController extends Controller {
      * @return Response
      */
     public function destroy($id) {
-        //
+        try {
+            Reservation::find($id)->delete();
+        } catch (\Exception $e) {
+            return response("Failed to delete reservation. It may already be used in an invoice.", 500);
+        }
     }
 
 }

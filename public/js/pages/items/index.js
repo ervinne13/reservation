@@ -28,6 +28,7 @@
             order: [1, "desc"],
             columns: [
                 {data: 'id'},
+                {data: 'id'},
                 {data: 'model'},
                 {data: 'name'},
                 {data: 'stock'},
@@ -51,7 +52,7 @@
                     }
                 },
                 {
-                    targets: 3,
+                    targets: 4,
                     render: function (stock, type, rowData, meta) {
 
                         if (stock >= 3) {
@@ -67,11 +68,11 @@
                     }
                 },
                 {
-                    targets: 4,
+                    targets: 5,
                     render: datatable_utilities.formatCurrency
                 },
                 {
-                    targets: 5,
+                    targets: 6,
                     render: function (stock, type, rowData, meta) {
 
                         if (stock < 0) {
@@ -83,7 +84,7 @@
                     }
                 },
                 {
-                    targets: 6,
+                    targets: 7,
                     render: function (stock, type, rowData, meta) {
 
                         if (stock > 0) {

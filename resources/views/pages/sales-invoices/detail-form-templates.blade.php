@@ -36,11 +36,11 @@
             </div>
             <div class="form-group">
                 <label>Item Cost</label>
-                <input type="text" required readonly name="item_cost" class="form-control required" placeholder="xx,xxx.xx">
+                <input type="text" required readonly name="item_cost" class="form-control required" placeholder="00,000.00">
             </div>
             <div class="form-group">
                 <label>Sub Total</label>
-                <input type="text" required readonly name="sub_total" class="form-control required" placeholder="xx,xxx.xx">
+                <input type="text" required readonly name="sub_total" class="form-control required" placeholder="00,000.00">
             </div>
         </div>
     </form>

@@ -38,6 +38,7 @@
                                                 <i class="fa fa-plus"></i>
                                             </a>
                                         </th>                                        
+                                        <th>ID</th>                                        
                                         <th>Model</th>                                        
                                         <th>Name</th>
                                         <th>Status</th>
