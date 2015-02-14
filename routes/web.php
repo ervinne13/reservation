@@ -38,6 +38,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('fuel-types/datatable', 'FuelTypesController@datatable');
     Route::resource('fuel-types', 'FuelTypesController');
 
+    Route::get('categories/datatable', 'CategoriesController@datatable');
+    Route::resource('categories', 'CategoriesController');
+    
     Route::get('items/{itemId}/files', 'ItemsController@itemFiles');
     Route::get('items/datatable', 'ItemsController@datatable');
     Route::get('items/status/{status}/datatable', 'ItemsController@datatableByStatus');

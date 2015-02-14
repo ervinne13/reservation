@@ -35,6 +35,12 @@
                                     <label>Name</label>
                                     <input type="text" required name="name" class="form-control required" value="{{ $fuelType->name }}" placeholder="Ex. Unleaded">
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea required class="form-control required" name="description" style="min-height: 250px;">{{ $fuelType->description }}</textarea>
+                                </div>
+
                             </div>
 
                         </div>

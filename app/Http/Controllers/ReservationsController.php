@@ -56,10 +56,22 @@ class ReservationsController extends Controller {
     }
 
     public function getByUserJSON($username) {
-        return Reservation::ReservedByUsername($username)
-                        ->with('item')
-                        ->with('salesInvoice')
-                        ->get();
+        $reservations = Reservation::ReservedByUsername($username)
+                ->with('item', 'item.images')
+                ->with('salesInvoice')
+                ->get()
+                ->toArray();
+
+        return array_map(function($reservation) {
+            //  backwards compatibility with mobile            
+            $reservation["item"]["image_url"] = "";
+
+            if (count($reservation["item"]["images"]) > 0) {
+                $reservation["item"]["image_url"] = $reservation["item"]["images"][0]["url"];
+            }
+
+            return $reservation;
+        }, $reservations);
     }
 
     /**
@@ -71,7 +83,7 @@ class ReservationsController extends Controller {
     public function store(Request $request) {
 
         try {
-            $reservation = new Reservation($request->toArray());
+            $reservation         = new Reservation($request->toArray());
             $reservation->status = "Pending";
             $reservation->save();
 

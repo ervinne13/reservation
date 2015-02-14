@@ -60,7 +60,7 @@
             <li>
                 <a href="/suppliers">
                     <span><i class="fa fa-file text-blue"></i> 
-                        Suppliers
+                        Brands
                     </span>
                 </a>
             </li>
@@ -68,6 +68,13 @@
                 <a href="/fuel-types">
                     <span><i class="fa fa-file text-blue"></i> 
                         Fuel Types
+                    </span>
+                </a>
+            </li>
+             <li>
+                <a href="/categories">
+                    <span><i class="fa fa-file text-blue"></i> 
+                        Categories
                     </span>
                 </a>
             </li>

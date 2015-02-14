@@ -131,7 +131,7 @@
                                 <td>{{$itemsSummary["critical_items"]}} Item(s), <a href="/items/status/Low Stocks">View</a></td>
                             </tr>
                             <tr>                                
-                                <td>Items Out of Stock</td>
+                                <td>Items <b class="text-red">Out of Stock</b></td>
                                 <td>{{$itemsSummary["out_of_stock_items"]}} Item(s), <a href="/items/status/Out of Stock">View</a></td>
                             </tr>
                             <tr>      

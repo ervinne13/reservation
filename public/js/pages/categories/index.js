@@ -11,9 +11,9 @@
 
     function initializeTable() {
 
-        var url = "/fuel-types/datatable";
+        var url = "/categories/datatable";
         if (status) {
-            url = "/fuel-types/status/" + status + "/datatable";
+            url = "/categories/status/" + status + "/datatable";
         }
 
         $datatable = $('#datatable').DataTable({
@@ -72,7 +72,7 @@
 
     function deleteItem(itemId) {
 
-        var url = baseURL + "/fuel-types/" + itemId;
+        var url = baseURL + "/categories/" + itemId;
 
         $.ajax({
             url: url,
@@ -80,7 +80,7 @@
             success: function (response) {
                 console.log(response);
                 $datatable.ajax.reload();
-                swal("SUCCESS", "Fuel type successfully deleted", 'success');
+                swal("SUCCESS", "Category successfully deleted", 'success');
             },
             error: function (response) {
                 swal("Error", response.responseText, 'error');

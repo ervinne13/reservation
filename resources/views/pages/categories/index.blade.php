@@ -3,7 +3,7 @@
 @section('js')
 @parent
 
-<script src="{{ asset ("/js/pages/fuel-types/index.js") }}" type="text/javascript"></script>
+<script src="{{ asset ("/js/pages/categories/index.js") }}" type="text/javascript"></script>
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Fuel Types
+        Categories
     </h1>
 </section>
 
@@ -27,7 +27,7 @@
                                 <thead>
                                     <tr>
                                         <th style="min-width: 40px">
-                                            <a class="action-create-entry" href="/fuel-types/create">
+                                            <a class="action-create-entry" href="/categories/create">
                                                 <i class="fa fa-plus"></i>
                                             </a>
                                         </th>                                        

@@ -29,7 +29,8 @@
             columns: [
                 {data: 'id'},
                 {data: 'id'},
-                {data: 'name'}
+                {data: 'name'},
+                {data: 'description'},
             ],
             columnDefs: [
                 {bSearchable: false, aTargets: [0]},

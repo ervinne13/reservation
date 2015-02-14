@@ -17,7 +17,7 @@ class AmortizationLoansController extends Controller {
      *
      * @return Response
      */
-    public function index() {
+    public function index() {        
         $viewData = $this->getDefaultViewData();
         return view('pages.amortization-loans.index', $viewData);
     }
@@ -172,9 +172,6 @@ class AmortizationLoansController extends Controller {
         $viewData = parent::getDefaultViewData();
 
         $viewData["openInvoices"] = SalesInvoice::With('reservation')->open()->get();
-
-        echo json_encode($viewData);
-        exit();
         
         return $viewData;
     }

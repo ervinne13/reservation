@@ -3,11 +3,11 @@
 @section('js')
 @parent
 <script type='text/javascript'>
-    var id = '{{$supplier->id}}';
+    var id = '{{$category->id}}';
     var mode = '{{$mode}}';
 </script>
 
-<script src="{{ asset ("/js/pages/suppliers/form.js") }}" type="text/javascript"></script>
+<script src="{{ asset ("/js/pages/categories/form.js") }}" type="text/javascript"></script>
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Brand
+        Category
         <small>
             {{ ($mode == "ADD" ? "Create New" : "Update") }}
         </small>       
@@ -33,14 +33,16 @@
                             <div class="col-lg-6 col-sm-12">                
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" required name="name" class="form-control required" value="{{ $supplier->name }}" placeholder="Ex. Racal">
+                                    <input type="text" required name="name" class="form-control required" value="{{ $category->name }}" placeholder="Ex. Scooter">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Brand Description</label>
-                                    <textarea required class="form-control required" name="description" style="min-height: 250px;">{{ $supplier->description }}</textarea>
+                                    <label>Description</label>
+                                    <textarea required class="form-control required" name="description" style="min-height: 250px;">{{ $category->description }}</textarea>
                                 </div>
+
                             </div>
+
                         </div>
 
                     </form>

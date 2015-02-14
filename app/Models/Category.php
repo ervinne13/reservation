@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Supplier extends Model {
+class Category extends Model {
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ["name", "description"];
     public $timestamps  = false;
 
 }

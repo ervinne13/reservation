@@ -17,10 +17,20 @@ class ItemsSeeder extends Seeder {
     public function run() {
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table("categories")->truncate();
         DB::table("fuel_types")->truncate();
         DB::table("suppliers")->truncate();
         DB::table("items")->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        $categories = [
+            ["id" => 1, "name" => "Scooter"],
+            ["id" => 2, "name" => "Kick Start"],
+            ["id" => 3, "name" => "Underbone"],
+            ["id" => 4, "name" => "Backbone"]
+        ];
+
+        App\Models\Category::insert($categories);
 
         $suppliers = [
             ["id" => 1, "name" => "Yamaha"],
@@ -46,7 +56,7 @@ class ItemsSeeder extends Seeder {
         $items = [
             [
                 "id"               => 1,
-                "category"         => "Scooter",
+                "category_id"      => 1,
                 "model"            => "JR125",
                 "name"             => "Racal JR125",
                 "cost"             => "60000",
@@ -60,7 +70,7 @@ class ItemsSeeder extends Seeder {
             ],
             [
                 "id"               => 2,
-                "category"         => "Kick Start",
+                "category_id"      => 2,
                 "model"            => "MD100",
                 "name"             => "Racal MD100",
                 "cost"             => "40000",
@@ -74,21 +84,21 @@ class ItemsSeeder extends Seeder {
             ],
             [
                 "id"               => 3,
-                "category"         => "Kick Start",
+                "category_id"      => 2,
                 "model"            => "MD110",
                 "name"             => "Racal MD110",
                 "cost"             => "50000",
                 "reservation_cost" => "2500",
                 "supplier_id"      => 5,
                 "fuel_type_id"     => 4,
-                "stock"        => 3,
-                "oil_capacity" => null,
-                "engine_type"  => null,
-                "description"  => "Demo item only. DO NOT USE IN PRODUCTION!"
+                "stock"            => 3,
+                "oil_capacity"     => null,
+                "engine_type"      => null,
+                "description"      => "Demo item only. DO NOT USE IN PRODUCTION!"
             ],
             [
                 "id"               => 4,
-                "category"         => "Kick Start",
+                "category_id"      => 2,
                 "model"            => "Speed X125",
                 "name"             => "Racal Speed X125",
                 "cost"             => "60000",
@@ -102,7 +112,7 @@ class ItemsSeeder extends Seeder {
             ],
             [
                 "id"               => 5,
-                "category"         => "Kick Start",
+                "category_id"      => 2,
                 "model"            => "TS125",
                 "name"             => "Racal TS125",
                 "cost"             => "60000",

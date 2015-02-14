@@ -11,7 +11,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Suppliers
+        Brands
     </h1>
 </section>
 
@@ -33,6 +33,7 @@
                                         </th>                                        
                                         <th>Id</th>                                        
                                         <th>Name</th>
+                                        <th>Description</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>

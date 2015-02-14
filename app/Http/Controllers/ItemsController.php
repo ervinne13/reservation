@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\FuelType;
 use App\Models\Item;
 use App\Models\ItemImage;
@@ -67,8 +68,7 @@ class ItemsController extends Controller {
      */
     public function create() {
 
-        $viewData               = $this->getDefaultFormViewData();
-        $viewData["categories"] = $this->itemCategories;
+        $viewData               = $this->getDefaultFormViewData();        
         $viewData["item"]       = new Item();
         $viewData["mode"]       = "ADD";
 
@@ -144,8 +144,7 @@ class ItemsController extends Controller {
      * @return Response
      */
     public function edit($id) {
-        $viewData               = $this->getDefaultFormViewData();
-        $viewData["categories"] = $this->itemCategories;
+        $viewData               = $this->getDefaultFormViewData();        
         $viewData["item"]       = Item::find($id);
         $viewData["mode"]       = "EDIT";
 
@@ -217,8 +216,9 @@ class ItemsController extends Controller {
     protected function getDefaultFormViewData() {
         $viewData = $this->getDefaultViewData();
 
-        $viewData["fuelTypes"] = FuelType::all();
-        $viewData["suppliers"] = Supplier::all();
+        $viewData["categories"] = Category::all();
+        $viewData["fuelTypes"]  = FuelType::all();
+        $viewData["suppliers"]  = Supplier::all();
 
         return $viewData;
     }

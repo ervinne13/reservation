@@ -15,7 +15,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Items Master Files
+        Inventory
         @if ($status)
         <small><a href="{{url("/items")}}">Back to all Items</a></small>
         @endif

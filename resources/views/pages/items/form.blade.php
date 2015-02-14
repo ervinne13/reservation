@@ -75,8 +75,8 @@
                                     <label>Category</label>
                                     <select class="form-control" name="category">
                                         @foreach($categories AS $category)
-                                        <?php $selected = $category == $item->category ? "selected" : "" ?>
-                                        <option value="{{$category}}" {{$selected}}>{{$category}}</option>
+                                        <?php $selected = $category->id == $item->category_id ? "selected" : "" ?>
+                                        <option value="{{$category->id}}" {{$selected}}>{{$category->name}}</option>
                                         @endforeach
                                     </select>                                    
                                 </div>
@@ -102,7 +102,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Current Stock</label>
+                                    <label>Quantity Stock</label>
                                     <input type="number" name="stock" class="form-control" value="{{ $item->stock }}" placeholder="how many does the store has left?">
                                 </div>
 
