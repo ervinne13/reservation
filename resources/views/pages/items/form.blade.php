@@ -73,7 +73,7 @@
 
                                 <div class="form-group">
                                     <label>Category</label>
-                                    <select class="form-control" name="category">
+                                    <select class="form-control" name="category_id">
                                         @foreach($categories AS $category)
                                         <?php $selected = $category->id == $item->category_id ? "selected" : "" ?>
                                         <option value="{{$category->id}}" {{$selected}}>{{$category->name}}</option>
