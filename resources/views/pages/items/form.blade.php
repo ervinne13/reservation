@@ -31,7 +31,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Item Master File
+        Inventory
         <small>
             {{ ($mode == "ADD" ? "Create New" : "Update") }}
         </small>       
@@ -82,7 +82,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Supplier</label>
+                                    <label>Brand</label>
                                     <select name="supplier_id" class="form-control">
                                         @foreach($suppliers AS $supplier)
                                         <?php $selected = $item->supplier_id == $supplier->id ? "selected" : "" ?>

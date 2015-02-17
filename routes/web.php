@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('files/remove', 'FilesController@remove');
 
     Route::get('sales', 'SalesController@index');
+    Route::get('overdue-customers', 'OverdueCustomersController@index');
+    Route::get('overdue-customers/test', 'OverdueCustomersController@test');
 
     // <editor-fold defaultstate="collapsed" desc="Master Files">
     Route::get('users/datatable', 'UsersController@datatable');

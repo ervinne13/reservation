@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AmortizationLoan;
 use App\Models\BankAccount;
 use App\Models\Item;
 use App\Models\NotifyPhoneNumber;
@@ -21,6 +22,8 @@ class HomeController extends Controller {
             $viewData["itemsSummary"] = Item::getSummaryReports();
 
             $viewData["clientReservations"] = Reservation::getReservationsByClient();
+
+            $viewData["openLoans"] = AmortizationLoan::open()->get();
 
             $viewData["currentYear"]  = date('Y');
             $viewData["currentMonth"] = date("F");

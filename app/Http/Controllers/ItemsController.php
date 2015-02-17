@@ -29,7 +29,10 @@ class ItemsController extends Controller {
     }
 
     public function datatable() {
-        return Datatables::of(Item::query())->make(true);
+        return Datatables::of(Item::
+                                with('category')
+                                ->with('supplier')
+                                ->with('fuelType'))->make(true);
     }
 
     public function viewlistByStatus($status) {
@@ -70,9 +73,9 @@ class ItemsController extends Controller {
      */
     public function create() {
 
-        $viewData               = $this->getDefaultFormViewData();        
-        $viewData["item"]       = new Item();
-        $viewData["mode"]       = "ADD";
+        $viewData         = $this->getDefaultFormViewData();
+        $viewData["item"] = new Item();
+        $viewData["mode"] = "ADD";
 
         return view('pages.items.form', $viewData);
     }
@@ -146,9 +149,9 @@ class ItemsController extends Controller {
      * @return Response
      */
     public function edit($id) {
-        $viewData               = $this->getDefaultFormViewData();        
-        $viewData["item"]       = Item::find($id);
-        $viewData["mode"]       = "EDIT";
+        $viewData         = $this->getDefaultFormViewData();
+        $viewData["item"] = Item::find($id);
+        $viewData["mode"] = "EDIT";
 
         return view('pages.items.form', $viewData);
     }

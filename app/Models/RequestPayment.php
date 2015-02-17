@@ -27,6 +27,10 @@ class RequestPayment extends Model {
         return $this->hasMany(RequestPaymentDetail::class, 'document_number', 'document_number');
     }
 
+    function principal() {
+        return $this->hasOne(RequestPaymentDetail::class, 'document_number', 'document_number')->where("payment_type_code", 'PRINCIPAL');
+    }
+
     function paymentBy() {
         return $this->belongsTo(Client::class, 'payment_by_username');
     }

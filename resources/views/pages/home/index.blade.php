@@ -7,8 +7,10 @@
 @include('templates.default-dropdown-table-actions')
 
 <script type="text/javascript">
-    var phoneNumbers = {!! $phoneNumbers !!};
-    var bankAccounts = {!! $bankAccounts !!};
+    var phoneNumbers = {!! $phoneNumbers !!}
+    ;
+            var bankAccounts = {!! $bankAccounts !!}
+    ;
 </script>
 
 <script src="{{ asset ("/vendor/underscore/underscore.js") }}" type="text/javascript"></script>
@@ -34,29 +36,79 @@
 
     <div class="row">
         <div class="col-lg-6">
+
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">System Settings: Phone Numbers</h3>
+                    <h3 class="box-title">Overdue Customers</h3>
                     <div class="box-tools pull-right">
                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>                        
                     </div>
                 </div>
                 <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="sales-table" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>                                        
+                                        <th>AML Number</th>
+                                        <th>Client</th>
+                                        <th>Due Date</th>
+                                        <th class="text-right"> Monthly</th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                    <small>These numbers will be notified about each action taken in the system</small>
+                                    <?php $currentDate = new DateTime() ?>
 
-                    <table class="table table-striped" id="tbl-phone-numbers">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Number</th>
-                                <th>Owner Name</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
+                                    @foreach($openLoans AS $loan)
+
+                                    @if($loan->getCurrentDueDate() < $currentDate)
+                                    <tr>
+                                        <td></td>
+                                        <td>{{$loan->document_number}}</td>
+                                        <td><a href="{{url("clients/" . $loan->loanBy->username . "/edit")}}">{{$loan->loanBy->full_name}}</a></td>
+                                        <td>{{$loan->getCurrentDueDate()->format("Y-m-d")}}</td>
+                                        <td class="text-right">{{number_format($loan->estimated_monthly_principal + $loan->estimated_monthly_interest, 2)}}</td>                                        
+                                    </tr>
+                                    @endif
+
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                            
+                            <div class="pull-right">
+                                <button class="btn btn-success" id="action-notify-customers">Notify ClientsVia SMS</button>
+                            </div>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- ./box-body -->                
             </div><!-- /.box -->
+
+            <!--            <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">System Settings: Phone Numbers</h3>
+                                <div class="box-tools pull-right">
+                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>                        
+                                </div>
+                            </div>
+                            <div class="box-body">
+            
+                                <small>These numbers will be notified about each action taken in the system</small>
+            
+                                <table class="table table-striped" id="tbl-phone-numbers">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Number</th>
+                                            <th>Owner Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>-->
 
             <div class="box box-primary">
                 <div class="box-header with-border">
@@ -134,14 +186,14 @@
                                 <td>Items <b class="text-red">Out of Stock</b></td>
                                 <td>{{$itemsSummary["out_of_stock_items"]}} Item(s), <a href="/items/status/Out of Stock">View</a></td>
                             </tr>
-                            <tr>      
+<!--                            <tr>      
                                 @if ($itemsSummary["committed_stocks"] > 0)
                                 <td><b class="text-danger">Committed Stocks</b></td>
                                 @else
                                 <td>Committed Stocks</td>
                                 @endif                                
                                 <td>{{$itemsSummary["committed_stocks"]}} Item(s), <a href="/items/status/Committed Stocks">View</a></td>
-                            </tr>
+                            </tr>-->
                         </tbody>
                     </table>
                 </div>

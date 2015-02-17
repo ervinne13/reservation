@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,19 +24,52 @@ class AmortizationLoan extends Model {
         return $aml;
     }
 
-    function details() {
+    public function getCurrentDueDate() {
+        $latestPayment = $this->latestPayment;
+
+        $currentDate  = new DateTime();
+        $dateReceived = new DateTime($this->date_received);
+
+        if ($latestPayment) {
+            $lastPaymentDate = new DateTime($latestPayment->document_date);
+        } else {
+            $lastPaymentDate = $dateReceived;
+        }
+
+        $currentMonth  = $currentDate->format("m");
+        $monthReceived = $dateReceived->format("m");
+
+        $currentMonth;
+        $lastPaymentDate->modify('+1 month');
+
+        return $lastPaymentDate;
+    }
+
+    public function details() {
         return $this->hasMany(AmortizationLoanDetail::class, 'document_number', 'document_number');
     }
 
-    function loanBy() {
+    public function loanBy() {
         return $this->belongsTo(Client::class, 'loan_by_username');
     }
 
-    function scopeOpen($query) {
+    public function payments() {
+        return $this->hasMany(RequestPayment::class, 'applies_to');
+    }
+
+    public function latestPayment() {
+        return $this
+                        ->hasOne(RequestPayment::class, 'applies_to')
+                        ->orderBy("document_date", "DESC")
+                        ->limit(1)
+        ;
+    }
+
+    public function scopeOpen($query) {
         return $query->where('status', 'Open')->orWhere('status', 'Partially Paid');
     }
 
-    function scopeOpenAndDocNo($query, $amlDocNo) {
+    public function scopeOpenAndDocNo($query, $amlDocNo) {
         return $query->where('status', 'Open')
                         ->orWhere('status', 'Partially Paid')
                         ->orWhere('document_number', $amlDocNo);

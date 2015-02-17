@@ -29,7 +29,7 @@
             <div class="box box-primary">
                 <div class="box-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 table-responsive">
                             <table id="datatable" class="table table-striped">
                                 <thead>
                                     <tr>
@@ -44,8 +44,10 @@
                                         <th>Status</th>
                                         <th>Item Cost</th>
                                         <th>Remaining Stocks</th>
-                                        <th>Committed Stocks</th>
-                                        <th>Remarks</th>
+                                        <!--<th>Committed Stocks</th>-->                                        
+                                        <th>Category</th>
+                                        <th>Brand</th>
+                                        <th>Fuel Type</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>

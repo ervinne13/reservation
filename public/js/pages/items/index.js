@@ -34,8 +34,10 @@
                 {data: 'stock'},
                 {data: 'cost'},
                 {data: 'stock'},
-                {data: 'stock'},
-                {data: 'description'}
+//                {data: 'stock'},                
+                {data: 'category.name'},
+                {data: 'supplier.name'},
+                {data: 'fuel_type.name', name: 'fuel_type.name'}
             ],
             columnDefs: [
                 {bSearchable: false, aTargets: [0]},
@@ -83,18 +85,18 @@
 
                     }
                 },
-                {
-                    targets: 7,
-                    render: function (stock, type, rowData, meta) {
-
-                        if (stock > 0) {
-                            return 0;
-                        } else {
-                            return stock * -1;
-                        }
-
-                    }
-                }
+//                {
+//                    targets: 7,
+//                    render: function (stock, type, rowData, meta) {
+//
+//                        if (stock > 0) {
+//                            return 0;
+//                        } else {
+//                            return stock * -1;
+//                        }
+//
+//                    }
+//                }
             ]
         });
     }
