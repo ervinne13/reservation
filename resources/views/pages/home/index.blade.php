@@ -1,4 +1,4 @@
-@extends('layouts.lte-record-list')
+@extends('layouts.lte-module')
 
 @section('js')
 @parent
@@ -15,6 +15,7 @@
 
 <script src="{{ asset ("/vendor/underscore/underscore.js") }}" type="text/javascript"></script>
 <script src="{{ asset ("/vendor/jquery/jquery.validate.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset ("/js/sms-utility.js") }}" type="text/javascript"></script>
 <script src="{{ asset ("/js/form-utilities.js") }}" type="text/javascript"></script>
 <script src="{{ asset ("/js/sg-table.js") }}" type="text/javascript"></script>
 <script src="{{ asset ("/js/sg-table-row-utilities.js") }}" type="text/javascript"></script>
@@ -39,7 +40,7 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Overdue Customers</h3>
+                    <h3 class="box-title">Overdue/Due Today Customers</h3>
                     <div class="box-tools pull-right">
                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>                        
                     </div>
@@ -63,8 +64,13 @@
 
                                     @foreach($openLoans AS $loan)
 
-                                    @if($loan->getCurrentDueDate() < $currentDate)
-                                    <tr>
+                                    @if($loan->getCurrentDueDate() <= $currentDate)
+                                    <tr class="overdue-payment-row"
+                                        data-loan-number="{{$loan->document_number}}"
+                                        data-client-number="{{$loan->loanBy->contact_number_1}}"
+                                        data-due-date="{{$loan->getCurrentDueDate()->format("Y-m-d")}}"
+                                        data-payable="{{number_format($loan->estimated_monthly_principal + $loan->estimated_monthly_interest, 2)}}"
+                                        >
                                         <td></td>
                                         <td>{{$loan->document_number}}</td>
                                         <td><a href="{{url("clients/" . $loan->loanBy->username . "/edit")}}">{{$loan->loanBy->full_name}}</a></td>
@@ -79,7 +85,7 @@
                             </table>
                             
                             <div class="pull-right">
-                                <button class="btn btn-success" id="action-notify-customers">Notify ClientsVia SMS</button>
+                                <button class="btn btn-success" id="action-notify-customers">Notify Clients Via SMS</button>
                             </div>
                         </div><!-- /.col -->
                     </div><!-- /.row -->

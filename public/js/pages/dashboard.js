@@ -1,14 +1,25 @@
 
-/* global phoneNumbers, sg_table_row_utilities, bankAccounts */
+/* global phoneNumbers, sg_table_row_utilities, bankAccounts, SMSUtility */
 
 (function () {
 
     var $phoneNumbersTable, $bankAccountsTable;
 
     $(document).ready(function () {
+        SMSUtility.initialize();
+
+        initializeEvents();
         initializePhoneNumbersTable();
         initializeBankAccountsTable();
     });
+
+    function initializeEvents() {
+
+        $('#action-notify-customers').click(function () {
+            notifyClients();
+        });
+
+    }
 
     function initializePhoneNumbersTable() {
         $phoneNumbersTable = $('#tbl-phone-numbers').SGTable({
@@ -131,6 +142,18 @@
         console.log(accountNumber);
 
         sg_table_row_utilities.deleteRowOnView("tbl-bank-accounts", accountNumber);
+    }
+
+    function notifyClients() {
+
+        $('.overdue-payment-row').each(function () {
+            var message = "You loan (" + $(this).data('loan-number') + ") is due on " + $(this).data('due-date') + ". Please settle required payment of P" + $(this).data('payable');
+
+            SMSUtility.sendSMS($(this).data('client-number'), message);
+            swal("Success", "Messages sent", "success");
+
+        });
+
     }
 
 })();

@@ -37,9 +37,15 @@
                     targets: 0,
                     render: function (id, type, rowData, meta) {
                         var actions = [
-                            datatable_utilities.getDefaultEditAction(id),
-                            datatable_utilities.getDefaultDeleteAction(id)
+                            datatable_utilities.getDefaultEditAction(id)
                         ];
+
+                        if (!rowData.is_active) {
+                            actions.push(getActivateAction(id));
+                        } else {
+                            actions.push(datatable_utilities.getDefaultDeleteAction(id));
+                        }
+
                         return datatable_utilities.getInlineActionsView(actions);
                     }
                 },
@@ -74,7 +80,35 @@
     }
 
     function initializeEvents() {
-        form_utilities.initializeDefaultDeleteInViewAction($datatable, "#datatable", baseURL + "/clients", "Client successfullly deleted");
+
+        $("#datatable").on('click', '.action-delete', function (e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+
+            swal({
+                title: "Are you sure?",
+                text: "This record will be permanently deleted",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete record"
+            }).then(function () {
+                var url = baseURL + "/clients/" + id;
+
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    success: function (response) {
+                        console.log(response);
+                        $datatable.ajax.reload();
+                        swal("SUCCESS", "Client successfullly deleted", 'success');
+                    },
+                    error: function (response) {
+                        askDeactivate(id, response.responseText);
+                    }
+                });
+            });
+        });
 
         $(document).on('click', '.action-deactivate', function () {
             var id = $(this).data('id');
@@ -88,9 +122,22 @@
 
     }
 
+    function askDeactivate(id, errorMessage) {
+        swal({
+            title: "Failed to Delete Client?",
+            text: errorMessage + ". Do you want to disable client instead?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, deactivate client"
+        }).then(function () {
+            changeActiveStatus(id, false);
+        });
+    }
+
     function changeActiveStatus(id, isActive) {
 
-        var url = baseURL + "/users/" + id + "/" + (isActive ? "activate" : "deactivate");
+        var url = baseURL + "/clients/" + id + "/" + (isActive ? "activate" : "deactivate");
         $.get(url, function (response) {
             swal("Success", "User is now " + (isActive ? "active" : "inactive"), 'success');
             $datatable.ajax.reload();

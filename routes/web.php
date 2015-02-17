@@ -33,6 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('users/datatable', 'UsersController@datatable');
     Route::resource('users', 'UsersController');
 
+    Route::get('clients/{clientId}/activate', 'ClientsController@activate');
+    Route::get('clients/{clientId}/deactivate', 'ClientsController@deactivate');
     Route::get('clients/datatable', 'ClientsController@datatable');
     Route::resource('clients', 'ClientsController');
 
@@ -64,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('reservations/datatable', 'ReservationsController@datatable');
     Route::resource('reservations', 'ReservationsController');
-    Route::get('reservations/{id}/convert', 'ReservationsController@convert');
+    Route::get('reservations/{id}/convert', 'ReservationsController@convert');    
 
     Route::get('amortization-loans/datatable', 'AmortizationLoansController@datatable');
     Route::resource('amortization-loans', 'AmortizationLoansController');

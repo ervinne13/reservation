@@ -27,6 +27,12 @@ class Reservation extends Model {
         return DB::select(DB::raw($queryString));
     }
 
+    public function scopeByActiveUsers($query) {
+        return $query
+                        ->join("users", 'users.username', '=', 'reservations.reserved_by_username')
+                        ->where("users.is_active", 1);
+    }
+
     public function scopeReservedByUsername($query, $username) {
         return $query->where("reserved_by_username", $username);
     }

@@ -26,6 +26,38 @@ class ClientsController extends Controller {
         return Datatables::of(Client::query())->make(true);
     }
 
+    public function activate($clientId) {
+        try {
+            $client            = Client::find($clientId);
+            $client->is_active = 1;
+            $client->save();
+
+            $clientUser = $client->user;
+            if ($clientUser) {
+                $clientUser->is_active = 1;
+                $clientUser->save();
+            }
+        } catch (\Exception $e) {
+            return response($e->getMessage(), 500);
+        }
+    }
+
+    public function deactivate($clientId) {
+        try {
+            $client            = Client::find($clientId);
+            $client->is_active = 0;
+            $client->save();
+
+            $clientUser = $client->user;
+            if ($clientUser) {
+                $clientUser->is_active = 0;
+                $clientUser->save();
+            }
+        } catch (\Exception $e) {
+            return response($e->getMessage(), 500);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
       Responseate\Http\Response

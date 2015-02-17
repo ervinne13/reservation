@@ -6,12 +6,14 @@ use App\Models\Reservation;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
 
 class ReservationsController extends Controller {
 
     protected $reseravationStatusList = [
         "Pending",
+        "Cancelled",
         "Rejected",
         "Validated",
 //        "With S.I."   //  With S.I. Cannot be manually selected
@@ -28,11 +30,17 @@ class ReservationsController extends Controller {
     }
 
     public function datatable() {
-        return Datatables::of(Reservation::
-                                with('item')
-                                ->with('salesInvoice')
-                                ->with('reservedBy')
-                )->make(true);
+
+        $query = Reservation::
+                with('item')
+                ->with('salesInvoice')
+                ->with('reservedBy');
+
+        if (Auth::user()->role_name != 'ADMIN') {
+            $query = $query->byActiveUsers();
+        }
+
+        return Datatables::of($query)->make(true);
     }
 
     public function convert($id) {
@@ -41,6 +49,19 @@ class ReservationsController extends Controller {
             $salesInvoice = $reservation->createSI();
 
             return $salesInvoice;
+        } catch (Exception $e) {
+            return response($e->getMessage(), 500);
+        }
+    }
+
+    public function cancel($id) {
+        try {
+            $reservation         = Reservation::find($id);
+            $reservation->status = "Cancelled";
+
+            $reservation->save();
+
+            return "Success";
         } catch (Exception $e) {
             return response($e->getMessage(), 500);
         }

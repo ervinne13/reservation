@@ -35,11 +35,7 @@ class AmortizationLoan extends Model {
         } else {
             $lastPaymentDate = $dateReceived;
         }
-
-        $currentMonth  = $currentDate->format("m");
-        $monthReceived = $dateReceived->format("m");
-
-        $currentMonth;
+        
         $lastPaymentDate->modify('+1 month');
 
         return $lastPaymentDate;

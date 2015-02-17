@@ -28,6 +28,7 @@ Route::group(['middleware' => 'cors'], function () {
     Route::post('reservations', 'ReservationsController@store');
     Route::put('reservations', 'ReservationsController@update');
     Route::post('reservations/{reservationId}/updateImage', 'ReservationsController@updateImage');
+    Route::post('reservations/{reservationId}/cancel', 'ReservationsController@cancel');
 });
 
 //  For easier explanation to client later, use this link: https://gistlog.co/JacobBennett/090369fbab0b31130b51

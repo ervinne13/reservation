@@ -18,6 +18,9 @@
         </tr>
     </thead>
     <tbody>
+        
+        <?php $lastPaymentMadeString = $loan->document_date ?>
+        
         @foreach($loan->details AS $detail)
         <tr>                       
             <td>

@@ -14,6 +14,10 @@ class Client extends Model {
 
     public function loans() {
         return $this->hasMany(AmortizationLoan::class, "loan_by_username");
-    }       
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class, 'username');
+    }
 
 }
