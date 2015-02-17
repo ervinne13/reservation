@@ -47,6 +47,7 @@ class ItemsController extends Controller {
                 ->with('category')
                 ->with('supplier')
                 ->with('fuelType')
+                ->orderBy("id", 'desc')
                 ->get()
                 ->toArray();
 
