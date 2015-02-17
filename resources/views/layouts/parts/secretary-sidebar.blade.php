@@ -6,13 +6,21 @@
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
             <li class="header">Administration</li>
-<!--            <li>
-                <a href="/">
-                    <span><i class="fa fa-dashboard text-red"></i> 
-                        Dashboard
+            <!--            <li>
+                            <a href="/">
+                                <span><i class="fa fa-dashboard text-red"></i> 
+                                    Dashboard
+                                </span>
+                            </a>
+                        </li>-->
+            <li>
+                <a href="/sales">
+                    <span>
+                        <i class="fa fa-dollar text-purple"></i> 
+                        Sales Report
                     </span>
                 </a>
-            </li>-->
+            </li>
             <li>
                 <a href="/clients">
                     <span><i class="fa fa-users text-fuchsia"></i> 

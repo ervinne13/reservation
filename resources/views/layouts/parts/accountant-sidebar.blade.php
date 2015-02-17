@@ -6,13 +6,13 @@
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
             <li class="header">Administration</li>
-<!--            <li>
-                <a href="/">
-                    <span><i class="fa fa-dashboard text-red"></i> 
-                        Dashboard
-                    </span>
-                </a>
-            </li>-->
+            <!--            <li>
+                            <a href="/">
+                                <span><i class="fa fa-dashboard text-red"></i> 
+                                    Dashboard
+                                </span>
+                            </a>
+                        </li>-->
             <li>
                 <a href="/clients">
                     <span><i class="fa fa-users text-fuchsia"></i> 
@@ -21,6 +21,14 @@
                 </a>
             </li>
             <li class="header">Finance, Loans & Payments</li>
+            <li>
+                <a href="/sales">
+                    <span>
+                        <i class="fa fa-dollar text-purple"></i> 
+                        Sales Report
+                    </span>
+                </a>
+            </li>
             <li>
                 <a href="/reservations">
                     <span><i class="fa fa-shopping-bag text-purple"></i> 
@@ -49,27 +57,27 @@
                     </span>
                 </a>
             </li>           
-<!--            <li class="header">Accounting Links</li>
-            <li>
-                <a href="http://211.221.84.84/arc-nav/accounting">
-                    <span><i class="fa fa-check text-aqua"></i> 
-                        Accounting Module
-                    </span>
-                </a>
-            <li>
-                <a href="http://211.221.84.84/arc-nav/batch-post">
-                    <span><i class="fa fa-file-o text-aqua"></i> 
-                        Batch Posting Module
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="http://211.221.84.84/arc-nav/importation">
-                    <span><i class="fa fa-upload text-aqua"></i> 
-                        Importation Module
-                    </span>
-                </a>
-            </li>-->
+            <!--            <li class="header">Accounting Links</li>
+                        <li>
+                            <a href="http://211.221.84.84/arc-nav/accounting">
+                                <span><i class="fa fa-check text-aqua"></i> 
+                                    Accounting Module
+                                </span>
+                            </a>
+                        <li>
+                            <a href="http://211.221.84.84/arc-nav/batch-post">
+                                <span><i class="fa fa-file-o text-aqua"></i> 
+                                    Batch Posting Module
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://211.221.84.84/arc-nav/importation">
+                                <span><i class="fa fa-upload text-aqua"></i> 
+                                    Importation Module
+                                </span>
+                            </a>
+                        </li>-->
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

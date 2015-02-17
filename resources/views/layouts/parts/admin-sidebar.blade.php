@@ -29,6 +29,14 @@
             </li>
             <li class="header">Finance, Loans & Payments</li>
             <li>
+                <a href="/sales">
+                    <span>
+                        <i class="fa fa-dollar text-purple"></i> 
+                        Sales Report
+                    </span>
+                </a>
+            </li>
+            <li>
                 <a href="/reservations">
                     <span><i class="fa fa-shopping-bag text-purple"></i> 
                         Reservations
@@ -71,7 +79,7 @@
                     </span>
                 </a>
             </li>
-             <li>
+            <li>
                 <a href="/categories">
                     <span><i class="fa fa-file text-blue"></i> 
                         Categories

@@ -44,6 +44,7 @@ class ItemsController extends Controller {
 
     public function getAllJSON() {
         $items = Item::with('images')
+                ->with('category')
                 ->with('supplier')
                 ->with('fuelType')
                 ->get()

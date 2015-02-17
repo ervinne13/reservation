@@ -24,6 +24,30 @@ class SalesInvoice extends Model {
         return $si;
     }
 
+    public static function getMonthlySales() {
+        $queryString = 'SELECT YEAR(document_date) AS sales_year, MONTH(document_date) AS sales_month, SUM(down_payment) AS total_sales 
+                        FROM reservation.sales_invoices
+                        GROUP BY sales_year, sales_month
+                        ORDER BY sales_year DESC, sales_month DESC;';
+
+        return DB::select(DB::raw($queryString));
+    }
+
+    public static function getMonthlyCollections() {
+        $queryString = 'SELECT 
+                                YEAR(request_payments.document_date) AS collection_year,
+                            MONTH(request_payments.document_date) AS collection_month,
+                                SUM(amount) AS total_collections 
+                        FROM reservation.request_payment_details 
+                        LEFT JOIN reservation.request_payments 
+                                ON request_payments.document_number = request_payment_details.document_number 
+
+                        WHERE status = \'Posted\' AND payment_type_code=\'PRINCIPAL\'
+                        GROUP BY collection_year, collection_month
+                        ORDER BY collection_year DESC, collection_month DESC';
+        return DB::select(DB::raw($queryString));
+    }
+
     public static function getSummaryReports() {
 
         $currentYear  = date('Y');
