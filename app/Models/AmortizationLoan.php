@@ -35,7 +35,7 @@ class AmortizationLoan extends Model {
         } else {
             $lastPaymentDate = $dateReceived;
         }
-        
+
         $lastPaymentDate->modify('+1 month');
 
         return $lastPaymentDate;
@@ -51,6 +51,10 @@ class AmortizationLoan extends Model {
 
     public function payments() {
         return $this->hasMany(RequestPayment::class, 'applies_to');
+    }
+
+    public function invoice() {
+        return $this->belongsTo(SalesInvoice::class, 'reference_invoice_number');
     }
 
     public function latestPayment() {

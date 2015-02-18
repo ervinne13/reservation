@@ -27,7 +27,7 @@ class AmortizationLoansController extends Controller {
     }
 
     public function getByUserJSON($username) {
-        return AmortizationLoan::With('details')->username($username)->get();
+        return AmortizationLoan::With('details')->with('invoice')->username($username)->get();
     }
 
     /**
