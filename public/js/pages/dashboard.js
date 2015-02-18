@@ -147,7 +147,7 @@
     function notifyClients() {
 
         $('.overdue-payment-row').each(function () {
-            var message = "You loan (" + $(this).data('loan-number') + ") is due on " + $(this).data('due-date') + ". Please settle required payment of P" + $(this).data('payable');
+            var message = "Your loan (" + $(this).data('loan-number') + ") is due on " + $(this).data('due-date') + ". Please settle required payment of P" + $(this).data('payable');
 
             SMSUtility.sendSMS($(this).data('client-number'), message);
             swal("Success", "Messages sent", "success");
