@@ -1,5 +1,5 @@
 
-/* global form_utilities, id, _, mode */
+/* global form_utilities, id, _, mode, baseURL */
 
 (function () {
 
@@ -48,6 +48,26 @@
             showPasswordFields(true);
         });
 
+        $('#action-reset-password').click(function () {
+            swal({
+                title: "Are you sure?",
+                text: 'This will reset the clients password',
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, reset password"
+            }).then(function () {
+                resetPassword();
+            });
+        });
+
+    }
+
+    function resetPassword() {
+        var url = baseURL + "/clients/" + id + "/reset-password";
+        $.get(url, function (newPassword) {
+            swal("Success", "Password reset, new password is " + newPassword + ". Please ask the user to change this after the he logs in", "success");
+        });
     }
 
     function showPasswordFields(show) {

@@ -58,6 +58,24 @@ class ClientsController extends Controller {
         }
     }
 
+    public function resetPassword($clientId) {
+        try {
+            $client     = Client::find($clientId);
+            $clientUser = $client->user;
+
+            $password = str_random(8);
+
+            if ($clientUser) {
+                $clientUser->password = \Hash::make($password);
+                $clientUser->save();
+            }
+
+            return $password;
+        } catch (\Exception $e) {
+            return response($e->getMessage(), 500);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
       Responseate\Http\Response

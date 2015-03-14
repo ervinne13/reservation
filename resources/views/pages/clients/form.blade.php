@@ -62,6 +62,8 @@
                                     </select>
                                 </div>
 
+                                <button id="action-reset-password" type="button" class="btn btn-link">Reset Password</button>
+
                                 <div id="password-fields-container">
                                     <button id="action-show-passwords-field" type="button" class="btn btn-link">Change Password</button>
                                 </div>
