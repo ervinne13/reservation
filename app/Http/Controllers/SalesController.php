@@ -10,6 +10,7 @@ class SalesController extends Controller {
 
         $viewData = $this->getDefaultViewData();
 
+        $viewData["dailySales"]         = SalesInvoice::getDailySales();
         $viewData["monthlySales"]       = SalesInvoice::getMonthlySales();
         $viewData["monthlyCollections"] = SalesInvoice::getMonthlyCollections();
 

@@ -360,7 +360,9 @@
 
         //  </editor-fold>
 
-        generateHeaderRow(this);
+        if (this.sgOptions.autoGenerateHeaderRow === true) {
+            generateHeaderRow(this);
+        }
         initializeComponents(this);
 
         //  make sure that there's a tbody

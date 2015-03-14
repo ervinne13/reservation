@@ -24,6 +24,16 @@ class SalesInvoice extends Model {
         return $si;
     }
 
+    public static function getDailySales() {
+        $queryString = 'SELECT document_date, SUM(down_payment) AS total_sales 
+                        FROM reservation.sales_invoices                        
+                        GROUP BY document_date
+                        ORDER BY document_date DESC
+                        LIMIT 0, 30;';
+
+        return DB::select(DB::raw($queryString));
+    }
+
     public static function getMonthlySales() {
         $queryString = 'SELECT YEAR(document_date) AS sales_year, MONTH(document_date) AS sales_month, SUM(down_payment) AS total_sales 
                         FROM reservation.sales_invoices
